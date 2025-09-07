@@ -48,6 +48,11 @@ A number of optional components are listed in the parts list below. Currently, I
    After completing the initial configuration, OpenWrt will set the nodes to use DHCP. This allows the Pi to automatically obtain an IP address from any connected network without manual configuration. If you are using these in a disconnected environment, it may make sense to set static IP addresses on the radios, and your EUDs.
    Tested with a local home network and with a Starlink Mini providing DHCP.
 
+6. **Optionally Setup batman-adv**
+   batman-adv is a layer 2 mesh routing setup that is self healing and optimizes connectivty between multiple mesh nodes and gateways.
+
+   [Setup batman-adv](docs/batman-adv-setup.md)
+
 ---
 
 ## Mesh Gate vs Mesh Point
