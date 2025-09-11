@@ -1,9 +1,10 @@
 # Build and deploy Jekyll site from /docs to GitHub Pages (served from root)
-name: Deploy Jekyll (docs subdir)
+name: Deploy Jekyll site to Pages
 
 on:
   push:
     branches: ["main"]
+  # run manually from Actions tab
   workflow_dispatch:
 
 permissions:
@@ -13,34 +14,36 @@ permissions:
 
 concurrency:
   group: "pages"
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: docs
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Setup Ruby
+      - name: Setup Ruby (Bundler uses docs/Gemfile)
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: '3.2'
+          ruby-version: '3.3'
           bundler-cache: true
+          cache-version: 0
+        env:
+          BUNDLE_GEMFILE: docs/Gemfile
 
       - name: Setup Pages
+        id: pages
         uses: actions/configure-pages@v5
 
-      # Build FROM /docs TO ../_site (repo root)
-      - name: Build with Jekyll (docs → _site)
-        run: bundle exec jekyll build --source . --destination ../_site
+      - name: Build with Jekyll (source=docs → _site at repo root)
+        run: bundle exec jekyll build --source docs --destination _site --baseurl "${{ steps.pages.outputs.base_path }}"
+        env:
+          JEKYLL_ENV: production
+          BUNDLE_GEMFILE: docs/Gemfile
 
-      # Upload the built site from root-level _site/
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact (_site/)
+        uses: actions/upload-pages-artifact@v4
         with:
           path: _site/
 
