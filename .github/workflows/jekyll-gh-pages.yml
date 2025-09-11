@@ -7,45 +7,46 @@ on:
       - "main"
     paths:
       - "docs/**"
-  # Allows manual runs from the Actions tab
   workflow_dispatch:
 
-# Permissions for GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment; don't cancel in-progress runs
 concurrency:
   group: "pages"
   cancel-in-progress: false
 
 jobs:
-  # Build job
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: docs
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Build Jekyll from the docs/ directory but output to _site at repo root
-      - name: Build with Jekyll
-        uses: actions/jekyll-build-pages@v1
-        with:
-          source: ./docs
-          destination: ./_site
+      # Build FROM /docs TO ../_site (repo root)
+      - name: Build with Jekyll (docs → _site)
+        run: bundle exec jekyll build --source . --destination ../_site
 
-      # Upload the built site from root _site directory
+      # Upload the built site from root-level _site/
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site/
 
-  # Deployment job
   deploy:
     environment:
       name: github-pages
