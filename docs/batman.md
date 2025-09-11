@@ -1,7 +1,7 @@
 ---
 layout: default
 title: B.A.T.M.A.N. Advanced Setup
-nav_order: 4
+nav_order: 3
 permalink: /batman-adv-setup
 description: Configure B.A.T.M.A.N. advanced (batman-adv) on OpenWrt for 802.11s HaLow meshes. Covers Server/Gateway and Client nodes, bridging, wireless, security, and mesh settings.
 ---

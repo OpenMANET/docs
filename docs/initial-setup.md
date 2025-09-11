@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Initial Setup
-nav_order: 3
+nav_order: 2
 description: Step-by-step guide to flashing, configuring, and deploying OpenMANET on Raspberry Pi HaLow HATs.
 ---
 
