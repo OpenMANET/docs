@@ -18,7 +18,7 @@ A number of optional components are listed in the parts list below. Currently, I
 * Raspberry Pi 3B+ and 2W support
 
 ## Advantages to using this over the Seeed image
-* The BCF file is different, so the power goes from 21 dBm to 27 dBm
+* The BCF file is different from the one provided by Seeed, so the power goes from 21 dBm to 27 dBm
 * The build is newer than the Seeed image
 * The build includes 802.11s support
 * 📄 [Range Testing Results](./Range%20Testing/README.md)

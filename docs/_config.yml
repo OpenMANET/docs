@@ -1,0 +1,33 @@
+# Welcome to Jekyll!
+#
+# This config file sets site-wide values (title, email, description, etc.).
+# Restart `bundle exec jekyll serve` after changing this file.
+
+# Site settings
+title: OpenMANET
+email: info@openmanet.net
+description: >-
+  OpenMANET is a Raspberry Pi–based MANET radio built on Wi-Fi HaLow (802.11ah).
+  Designed around Morse Micro HATs/SDIO boards and OpenWrt, it supports 802.11s
+  + batman-adv, GPSD-driven range tests, and a PTT app—aiming for a rugged,
+  field-ready kit. A custom BCF enables ~27 dBm TX power vs Seeed defaults.
+
+# If you publish under a custom domain or project pages, set these:
+# For a custom domain: url: "https://openmanet.net" and baseurl: ""
+# For GitHub project pages: url: "https://<user>.github.io" and baseurl: "/<repo>"
+baseurl: ""   # the subpath of your site, e.g. /docs; keep "" if deploying at root of the Pages site
+url: ""       # the base hostname & protocol for your site
+
+twitter_username: ""
+github_username: "OpenMANET"
+
+# Build settings
+theme: just-the-docs
+plugins:
+  - jekyll-feed
+
+# Just the Docs options (optional; tweak as needed)
+just_the_docs:
+  search_enabled: true
+  heading_anchors: true
+color_scheme: dark
