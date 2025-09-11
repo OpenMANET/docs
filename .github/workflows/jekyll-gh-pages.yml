@@ -1,4 +1,4 @@
-# Build and deploy Jekyll site from /docs to GitHub Pages
+# Build and deploy Jekyll site from /docs to GitHub Pages (served from root)
 name: Deploy Jekyll (docs subdir)
 
 on:
@@ -10,7 +10,7 @@ on:
   # Allows manual runs from the Actions tab
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+# Permissions for GitHub Pages
 permissions:
   contents: read
   pages: write
@@ -32,18 +32,18 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
-      # Build Jekyll from the docs/ directory
+      # Build Jekyll from the docs/ directory but output to _site at repo root
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
           source: ./docs
-          destination: ./docs/_site
+          destination: ./_site
 
-      # Upload the built site from docs/_site
+      # Upload the built site from root _site directory
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/_site/
+          path: _site/
 
   # Deployment job
   deploy:
