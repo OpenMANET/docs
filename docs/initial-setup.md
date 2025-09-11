@@ -33,6 +33,8 @@ This page walks you through downloading, flashing, and configuring the OpenMANET
    [MM6108-EKH01 User Guide PDF](https://www.morsemicro.com/wp-content/uploads/2024/12/MM6108-EKH01-Eval-Kit-User-Guide-v18.pdf)  
    It is recommended to complete Section 3.1 “Initial Setup” first, then Section 3.9 “802.11s Mesh Configuration” to establish your initial mesh link.
 
+   *Reboot the Pi after flashing the image to fix multicast issues*
+
 5. **Switch to DHCP for normal operation**  
    After completing the initial configuration, OpenWrt will set the nodes to use DHCP. This allows the Pi to automatically obtain an IP address from any connected network without manual configuration.  
    If you are using these in a disconnected environment, it may make sense to set static IP addresses on the radios and your EUDs.  
