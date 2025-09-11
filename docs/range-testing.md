@@ -1,3 +1,10 @@
+---
+layout: default
+title: Range Testing
+nav_order: 2
+description: Field test results of Wi-Fi HaLow (802.11ah) mesh networking with Raspberry Pi HATs at Pulpit Rock, Colorado Springs.
+---
+
 # Wi-Fi HaLow Range Testing — Pulpit Rock, Colorado Springs
 
 This round of testing went pretty well overall. The setup was running on a **2 MHz channel (42 @ 923 MHz)** with just **two nodes** in the 802.11s mesh. Speeds were tested using the Google Speed Test app on my iPhone (should’ve used `iperf3`—next time).  
@@ -20,37 +27,29 @@ Next round of testing will be with **multiple nodes** and on **1, 4, and 8 MHz c
 | Baseball lot    | ~669         | ~0.42         | 2.77            | 1.37          |
 | Neighborhood    | ~1,038       | ~0.65         | 0.33            | N/A           |
 
+---
+
 ## Test Images
 
 ### IMG_8480 — Equipment Setup
 ![IMG_8480](./pics/IMG_8480.jpg)  
 Equipment staged on top of Pulpit Rock, running the Wi-Fi HaLow mesh.
 
----
-
 ### IMG_8481 — View to Baseball Parking Lot
 ![IMG_8481](./pics/IMG_8481.jpg)  
 Looking out from the Rock toward the baseball lot, one of the test points.
-
----
 
 ### IMG_8482 — Parking Garage
 ![IMG_8482](./pics/IMG_8482.jpg)  
 View from the Rock to the parking garage, almost a mile away.
 
----
-
 ### IMG_8484 — Hospital View
 ![IMG_8484](./pics/IMG_8484.jpg)  
 Taken from the hospital parking lot, showing the Rock in the distance.
 
----
-
 ### IMG_8489 — Neighborhood View
 ![IMG_8489](./pics/IMG_8489.jpg)  
 Obstructed line-of-sight to the Rock from inside a neighborhood.
-
----
 
 ### IMG_8491 — Rock From Parking Garage
 ![IMG_8491](./pics/IMG_8491.jpg)  
