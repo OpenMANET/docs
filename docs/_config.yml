@@ -15,7 +15,7 @@ description: >-
 # If you publish under a custom domain or project pages, set these:
 # For a custom domain: url: "https://openmanet.net" and baseurl: ""
 # For GitHub project pages: url: "https://<user>.github.io" and baseurl: "/<repo>"
-baseurl: ""   # the subpath of your site, e.g. /docs; keep "" if deploying at root of the Pages site
+baseurl: "/docs"   # the subpath of your site, e.g. /docs; keep "" if deploying at root of the Pages site
 url: ""       # the base hostname & protocol for your site
 
 twitter_username: ""
