@@ -134,17 +134,6 @@ In situations without DHCP, you can configure static IPs. The DHCP range is `192
 
 ---
 
-## Notes for multicast to work
-Currently, multicast gets enabled at boot. But, then gets disabled again after the wizard. For now, to fix multicast SSH into each radio, and run the following commands.
-```
-uci set wireless.radio0.enable_mcast_whitelist=0
-uci commit
-reload_config
-reboot
-```
-
----
-
 ## GPS Range Testing Script
 
 A range-test script is included in the `scripts` folder. It uses the GPS module listed in the parts list to measure ping, RSSI, and SNR. You can use SCP to transfer the file to the Pi.
