@@ -61,6 +61,24 @@ CM4 boards are ideal for advanced builds, providing better expandability and eff
 
 <img src="pics/waveshare-cm4-wave/cm4_inside.jpeg" alt="WaveShare CM4 internals" width="360" />
 
+#### Other tested CM4 Carrier Boards
+
+**WaveShare CM4-IO-Base-X**
+Version A and B have been tested and work as expected
+
+Notes:
+- A M.2 **M Key** slot for communcation cards
+- Full GPIO Header
+- Same form factor as a Pi4
+
+**MCUZone CM4_WiFi6**
+This is a slightly larger carrier board than the WaveShare boards.
+
+Notes:
+- A M.2 **A Key** slot for communications cards.  This is limited to the 2230 form factor.
+- Full GPIO Header
+- Better for height constrained use cases, but a larger length and width form factor.
+
 ---
 
 ### M.2 Wi-Fi Cards for CM4 Boards
@@ -71,6 +89,19 @@ CM4 boards are ideal for advanced builds, providing better expandability and eff
 | [Intel AX210](https://www.waveshare.com/Wireless-AX210.htm) | 2.4 / 5 / 6 GHz Wi-Fi 6E | Works as an access point |
 
 These cards currently operate as normal Wi-Fi access points.  
+
+### M.2 Wi-Fi Cards that support 802.11s
+| Chipset | Interface | 802.11s | Notes |
+|---|---|---|---|
+| Intel AX2XX | M.2 AE Key | :x: | Can only operate in AP mode|
+| QCNA765 | M.2 E Key  | :x: | |
+| WCN6856 | M.2 E Key | :x: |  |
+| QCA6174 | M.2 E Key | :white_check_mark: | You can only have one wifi network defined when using 802.11s |
+| MT7921 | M.2 E Key | :x: | |
+| MT7915DAN | M.2 BM Key | :white_check_mark: | :bangbang: Dual Band AX, 802.11s Mesh Works, Power Draw is to high or there is a kernel issue with 5.15.  Crashes within 1-2min |
+| MT7916AED | M.2 AE Key | :white_check_mark: | :bangbang: Dual Band AX, 802.11s Mesh Works, Power Draw is to high or there is a kernel issue with 5.15.  Crashes within 1-2min |
+
+
 Work is underway to support bonding of HaLow (915 MHz) and 2.4 GHz links together using BATMAN-V for multi-band uplinks.
 
 ---
