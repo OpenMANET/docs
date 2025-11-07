@@ -49,7 +49,7 @@ Notes:
 ### Compute Module 4 (CM4) Builds
 
 Most Raspberry Pi Compute Module 4 (CM4) carrier boards work with the OpenMANET image.  
-A good option is the [WaveShare CM4 Dual ETH WiFi6 Base](https://www.waveshare.com/wiki/CM4-DUAL-ETH-WIFI6-BASE), which includes:
+A good option is the [WaveShare CM4 Dual ETH WiFi6 Base](https://www.waveshare.com/cm4-dual-eth-wifi6-base.htm), which includes:
 
 - Two Ethernet ports for bridging or mesh uplink  
 - An M.2 slot for a standard Wi-Fi card (AX200 or AX210)  
@@ -57,9 +57,9 @@ A good option is the [WaveShare CM4 Dual ETH WiFi6 Base](https://www.waveshare.c
 
 CM4 boards are ideal for advanced builds, providing better expandability and efficiency for multi-interface mesh nodes.
 
-![WaveShare CM4 build overview](pics/waveshare-cm4-wave/cm4.jpeg)
+<img src="pics/waveshare-cm4-wave/cm4.jpeg" alt="WaveShare CM4 build overview" width="360" />
 
-![WaveShare CM4 internals](pics/waveshare-cm4-wave/cm4_inside.jpeg)
+<img src="pics/waveshare-cm4-wave/cm4_inside.jpeg" alt="WaveShare CM4 internals" width="360" />
 
 ---
 
@@ -67,8 +67,8 @@ CM4 boards are ideal for advanced builds, providing better expandability and eff
 
 | Module | Band Support | Current Use |
 |---------|--------------|-------------|
-| Intel AX200 | 2.4 / 5 GHz Wi-Fi 6 | Works as an access point |
-| Intel AX210 | 2.4 / 5 / 6 GHz Wi-Fi 6E | Works as an access point |
+| [Intel AX200](https://www.waveshare.com/Wireless-AX200.htm) | 2.4 / 5 GHz Wi-Fi 6 | Works as an access point |
+| [Intel AX210](https://www.waveshare.com/Wireless-AX210.htm) | 2.4 / 5 / 6 GHz Wi-Fi 6E | Works as an access point |
 
 These cards currently operate as normal Wi-Fi access points.  
 Work is underway to support bonding of HaLow (915 MHz) and 2.4 GHz links together using BATMAN-V for multi-band uplinks.
