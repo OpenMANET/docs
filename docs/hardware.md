@@ -57,6 +57,10 @@ A good option is the [WaveShare CM4 Dual ETH WiFi6 Base](https://www.waveshare.c
 
 CM4 boards are ideal for advanced builds, providing better expandability and efficiency for multi-interface mesh nodes.
 
+![WaveShare CM4 build overview](pics/waveshare-cm4-wave/cm4.jpeg)
+
+![WaveShare CM4 internals](pics/waveshare-cm4-wave/cm4_inside.jpeg)
+
 ---
 
 ### M.2 Wi-Fi Cards for CM4 Boards

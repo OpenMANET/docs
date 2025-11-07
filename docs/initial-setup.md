@@ -35,11 +35,6 @@ This page walks you through downloading, flashing, and configuring the OpenMANET
 
    *Reboot the Pi after flashing the image to fix multicast issues*
 
-5. **Switch to DHCP for normal operation**  
-   After completing the initial configuration, OpenWrt will set the nodes to use DHCP. This allows the Pi to automatically obtain an IP address from any connected network without manual configuration.  
-   If you are using these in a disconnected environment, it may make sense to set static IP addresses on the radios and your EUDs.  
-   Tested with a local home network and with a Starlink Mini providing DHCP.
-
 
 ---
 
@@ -119,15 +114,6 @@ Later, you can enable bridge mode so you’re on the same network as other EUDs.
 - Mesh Gate supplies DHCP/DNS on the mesh subnet.
 - Traffic from mesh NATs to the upstream (if present).
 - Works well in disconnected/off-grid scenarios; clients still have local name resolution and services.
-
----
-
-## Notes for Disconnected Environments
-
-In situations without DHCP, you can configure static IPs. The DHCP range is `192.168.12.100` to `192.168.12.255`, so make sure you assign your IPs outside of this range. Start with `192.168.12.2`.
-
-- On your EUD (end-user device), assign a static IP in the mesh subnet to avoid losing connectivity if DHCP isn’t available.
-- On your Raspberry Pi radios, go to Quick Config in the UI, and set a static IP on the `ahwlan` interface. You can find the currently assigned IP from your DHCP server and then convert it to static.
 
 ---
 
