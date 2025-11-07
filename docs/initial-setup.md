@@ -45,49 +45,16 @@ When configuring 802.11s with the Seeed HaLow HAT, there are two main node types
 ### Mesh Gate
 Think of a Mesh Gate as the “hub” of your mesh. It’s the point where your next-hop connection (like an upstream internet connection or Starlink Mini) is attached. Mesh Gates have two operating modes:
 
-- **Bridged Mode**  
-  Ethernet and the HaLow mesh are bridged together. The same IP range and the same DHCP server as the Ethernet side are used. This is useful when you want to extend an existing network — e.g., your home network or a Starlink Mini router.
-
 - **Router Mode**  
   The Mesh Gate acts as its own NAT router. The mesh network gets its own subnet, and traffic is NAT’d to the upstream network. The Mesh Gate also runs DHCP and DNS, allowing your Raspberry Pis to resolve each other by hostname. This option is best for disconnected environments where there’s no upstream network or internet.
 
 ### Mesh Point
-A Mesh Point is a node that connects to the 802.11s mesh. It can bridge its Ethernet or 2.4/5 GHz Wi-Fi interface into the HaLow mesh.  
-**Recommendation:** For the first-time setup, do NOT enable bridging on the Mesh Point. This makes it easier to confirm connectivity by checking the Mesh Gate first. Once you verify the Mesh Point is joining the mesh, rerun the wizard and enable bridging.  
-If your node does not connect over HaLow, you will not be able to connect without connecting physically.  
-Later, you can enable bridge mode so you’re on the same network as other EUDs.
+A Mesh Point is a node that connects to the 802.11s mesh. It can bridge its Ethernet or 2.4/5 GHz Wi-Fi interface into the HaLow mesh.
+**Recommendation:** Create a mesh gate node first before creating a mesh point node.  This will make it easier to confirm connectivity on the mesh.
+
+If your node does not connect over HaLow, you will not be able to connect without connecting physically.
 
 ---
-
-## Topology Examples (ASCII Diagrams)
-
-### A) Mesh Gate in BRIDGED Mode (extending an existing network/DHCP)
-
-```
-             (Upstream Router / Starlink Mini)
-                         |
-                    [ Ethernet ]
-                         |
-              +----------------------+
-              |  Mesh Gate (BRIDGED) |
-              |  br-ahwlan: eth0+ah  |
-              +----------------------+
-                        ))))))  802.11s  (((((( 
-                 ________/         |            \________
-                /                  |                       \
-       +----------------+   +----------------+      +----------------+
-       | Mesh Point A   |   | Mesh Point B   |      | Mesh Point C   |
-       | (no bridge 1st)|   | (bridge later) |      | (bridge later) |
-       +----------------+   +----------------+      +----------------+
-            |     \               |     \                   |     \
-        [EUD A]  [WiFi AP]   [EUD B]  [WiFi AP]       [EUD C]  [WiFi AP]
-```
-
-**Notes:**
-- Same IP range as the upstream router.
-- Upstream router’s DHCP server hands out addresses to both Ethernet and 802.11s clients (via the bridge).
-- Useful for extending home/office networks or using Starlink Mini as the router.
-
 ### B) Mesh Gate in ROUTER Mode (own subnet, NAT to upstream, works offline)
 
 ```
