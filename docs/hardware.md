@@ -65,6 +65,8 @@ CM4 boards are ideal for advanced builds, providing better expandability and eff
 
 **WaveShare CM4-IO-Base-X**
 Version A and B have been tested and work as expected
+[CM4-IO-BASE-A](https://www.waveshare.com/product/raspberry-pi/boards-kits/compute-module-4-4s-cat/cm4-io-base-a.htm)
+[CM4-IO-BASE-B](https://www.waveshare.com/product/raspberry-pi/boards-kits/compute-module-4-4s-cat/cm4-io-base-b.htm)
 
 Notes:
 - A M.2 **M Key** slot for communcation cards
@@ -73,6 +75,8 @@ Notes:
 
 **MCUZone CM4_WiFi6**
 This is a slightly larger carrier board than the WaveShare boards.
+
+Can be found on [AliExpress](https://www.aliexpress.us/item/3256803637327862.html)
 
 Notes:
 - A M.2 **A Key** slot for communications cards.  This is limited to the 2230 form factor.
