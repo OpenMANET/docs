@@ -29,9 +29,8 @@ This page walks you through downloading, flashing, and configuring the OpenMANET
    *Note: after running the initial wizard, you will use the password you set.*
 
 4. **Initial configuration**  
-   Follow the steps in the Morse Micro EKH01 User Guide:  
-   [MM6108-EKH01 User Guide PDF](https://www.morsemicro.com/wp-content/uploads/2024/12/MM6108-EKH01-Eval-Kit-User-Guide-v18.pdf)  
-   It is recommended to complete Section 3.1 “Initial Setup” first, then Section 3.9 “802.11s Mesh Configuration” to establish your initial mesh link.
+   Folow the wizard to cofigure the mesh gate and mesh points.
+
 
    *Reboot the Pi after flashing the image to fix multicast issues*
 
