@@ -95,6 +95,7 @@ Notes:
 These cards currently operate as normal Wi-Fi access points.  
 
 ### M.2 Wi-Fi Cards that support 802.11s
+
 | Chipset     | Interface  | 802.11s | Notes |
 |-------------|------------|-----|----------------------------|
 | Intel AX2XX | M.2 AE Key | no  | Can only operate in AP mode|
