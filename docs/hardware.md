@@ -95,15 +95,16 @@ Notes:
 These cards currently operate as normal Wi-Fi access points.  
 
 ### M.2 Wi-Fi Cards that support 802.11s
-| Chipset | Interface | 802.11s | Notes |
-|---|---|---|---|
-| Intel AX2XX | M.2 AE Key | :x: | Can only operate in AP mode|
-| QCNA765 | M.2 E Key  | :x: | |
-| WCN6856 | M.2 E Key | :x: |  |
-| QCA6174 | M.2 E Key | :white_check_mark: | You can only have one wifi network defined when using 802.11s |
-| MT7921 | M.2 E Key | :x: | |
-| MT7915DAN | M.2 BM Key | :white_check_mark: | :bangbang: Dual Band AX, 802.11s Mesh Works, Power Draw is to high or there is a kernel issue with 5.15.  Crashes within 1-2min |
-| MT7916AED | M.2 AE Key | :white_check_mark: | :bangbang: Dual Band AX, 802.11s Mesh Works, Power Draw is to high or there is a kernel issue with 5.15.  Crashes within 1-2min |
+
+| Chipset     | Interface  | 802.11s | Notes |
+|-------------|------------|-----|----------------------------|
+| Intel AX2XX | M.2 AE Key | no  | Can only operate in AP mode|
+| QCNA765     | M.2 E Key  | no  | |
+| WCN6856     | M.2 E Key  | no  |  |
+| QCA6174     | M.2 E Key  | yes | You can only have one wifi network defined when using 802.11s |
+| MT7921      | M.2 E Key  | no  | |
+| MT7915DAN   | M.2 BM Key | yes | Dual Band AX, 802.11s Mesh Works, Power Draw is to high or there is a kernel issue with 5.15.  Crashes within 1-2min |
+| MT7916AED   | M.2 AE Key | yes | Dual Band AX, 802.11s Mesh Works, Power Draw is to high or there is a kernel issue with 5.15.  Crashes within 1-2min |
 
 
 Work is underway to support bonding of HaLow (915 MHz) and 2.4 GHz links together using BATMAN-V for multi-band uplinks.
