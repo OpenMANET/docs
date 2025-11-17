@@ -70,9 +70,9 @@ This scheme intentionally hides complexity:
 
 - Flat addressing and MDNS avoid the need for static routes or manual DNS.
 - Local DHCP on every mesh point ensures a client-friendly experience even when nodes are disconnected from the mesh gate.
-- NAT on the single mesh gate keeps the MANET isolated from whatever upstream you plug into it, which limits accidental exposure of experimental nodes.
+- NAT on the single mesh gate keeps the MANET isolated from whatever upstream you plug into it, ensuring the upstream network does not need any config changes.
 
-Flash **all nodes** when upgrading to Morse 2.8.5 or later so every device shares the same addressing plan and BATMAN-V stack.
+Flash **all nodes** when upgrading to the latest OpenMANET so every device shares the same addressing plan and BATMAN-V stack.
 
 ---
 
