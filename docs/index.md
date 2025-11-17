@@ -20,25 +20,18 @@ This project aims to provide a flexible HaLow mesh radio using Raspberry Pi hard
 
 ---
 
-## Roadmap
-- Enclosure design  
-- Investigate USB OTG/Ethernet Gadget mode to allow EUDs to connect without USB-to-Ethernet adapters  
-- Test **batman-adv** mesh networking
+## Networking Model
+- The mesh exposes a flat `10.41.0.0/16` LAN to end users, even though BATMAN-V may send frames over multiple HaLow hops in the background.
+- A single Mesh Gate now runs strictly in router mode, handing out `10.41.1.1` and NATing the MANET into whatever uplink you connect it to, your upstream network stays separate.
+- Every mesh point keeps its own DHCP scope and unique 2.4/5 GHz SSID, so clients can join over Ethernet or Wi-Fi and still get a lease during disconnected operations.
+- MDNS and Alfred advertise hostnames mesh-wide, so you can reach `hostname.local` from anywhere without touching DNS servers.
 
----
+This design is deliberately opinionated to reduce the amount of networking knowledge you need to bring a cluster online. See the dedicated [Networking](./networking) page for the full breakdown.
 
-## In Progress
-- GPS-based range-testing script using GPSD, logging GPS location, RSSI, and SNR for analysis  
-- PTT (Push-to-Talk) application so the radio is functional without an EUD  
-- Support for Seeed HaLow HATs now; other boards will be added later  
-- Raspberry Pi 3B+ and 2W support  
-- Testing the GPS module included on the Seeed 40-pin board
-
----
 
 ## Advantages vs. the Seeed image
-- Custom BCF configuration increases TX power (≈21 dBm → **27 dBm**)  
-- Newer build than the Seeed image  
+- Different BCF radio file increases TX power (≈21 dBm → **27 dBm**)  
+- Newer build than the Seeed image 
 - Includes **802.11s** and **batman-adv** support  
 
 ---
