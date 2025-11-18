@@ -35,14 +35,33 @@ This page walks you through downloading, flashing, and configuring the OpenMANET
 
 ### Important notice
 
-* You need to connect to the updated Mesh Gateway and Mesh Point IP number within 90s. Failing to do so will revert the changes and you will need to run the wizard again on by connecting to the device over eth at `10.42.0.1`.
-* Select unique SSIDs for Mesh Gateway and Mesh Point 2.4GHz WiFi.
-* After applying the configuration access to admin interface updated IP...
-   * Mesh Gateway
-      * Over upstream dhcp IP
+#### Automatic Rollback
+
+* When you make significant network changes (e.g., changing the router's IP address, subnet, or network protocol) in the LuCI web interface and click "Save & Apply," OpenWrt starts a timer (usually 90 seconds).
+* If your browser cannot re-establish a connection with the router before the timer runs out, OpenWrt assumes the new configuration is faulty and automatically reverts to the previous working settings to prevent you from being locked out. 
+
+#### SSIDs
+
+* HaLow radio
+      * Set a SSID name to be shred betweeen Mesh Gateway and all Mesh Points
+      * Set the same channel width and frequency on all devices connected over HaLow.
+* WiFi radio
+      * Apply uniue SSIDs for both Mesh Gateway and Mesh Point.
+      * Shared SSIDs are not supported (yet).
+
+#### Reconnecting
+
+After applying the configuration access to admin interface updated IP...
+
+* Mesh Gateway
+      * Over the upstream dhcp IP
       * Over 2.4GHz WiFi 
-   * Mesh Point
+* Mesh Point
       * Over 2.4GHz WiFi
+
+#### Powering RPIs
+
+* Ensure you have an adequate power source. Not providing sufficient power can result in a seemingly functional RPI but not enough to power HaLow / WiFi.
 
 ---
 
