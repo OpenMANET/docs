@@ -31,9 +31,18 @@ This page walks you through downloading, flashing, and configuring the OpenMANET
 4. **Initial configuration**  
    Folow the wizard to cofigure the mesh gate and mesh points.
 
-
    *Reboot the Pi after flashing the image to fix multicast issues*
 
+### Important notice
+
+* You need to connect to the updated Mesh Gateway and Mesh Point IP number within 90s. Failing to do so will revert the changes and you will need to run the wizard again on by connecting to the device over eth at `10.42.0.1`.
+* Select unique SSIDs for Mesh Gateway and Mesh Point 2.4GHz WiFi.
+* After applying the configuration access to admin interface updated IP...
+   * Mesh Gateway
+      * Over upstream dhcp IP
+      * Over 2.4GHz WiFi 
+   * Mesh Point
+      * Over 2.4GHz WiFi
 
 ---
 
