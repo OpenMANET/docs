@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Range Testing
-nav_order: 4
+nav_order: 5
 description: Field test results of Wi-Fi HaLow (802.11ah) mesh networking with Raspberry Pi HATs at Pulpit Rock, Colorado Springs.
 ---
 
