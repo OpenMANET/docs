@@ -43,21 +43,10 @@ This page walks you through downloading, flashing, and configuring the OpenMANET
 #### SSIDs
 
 * HaLow radio
-      * Set a SSID name to be shred betweeen Mesh Gateway and all Mesh Points
-      * Set the same channel width and frequency on all devices connected over HaLow.
+      * Set a SSID name to be shared betweeen Mesh Gateway and all Mesh Points
+      * Set channel to 4MHz width and choose the same frequency on all devices connected over HaLow.
 * WiFi radio
-      * Apply uniue SSIDs for both Mesh Gateway and Mesh Point.
-      * Shared SSIDs are not supported (yet).
-
-#### Reconnecting
-
-After applying the configuration access to admin interface updated IP...
-
-* Mesh Gateway
-      * Over the upstream dhcp IP
-      * Over 2.4GHz WiFi 
-* Mesh Point
-      * Over 2.4GHz WiFi
+      * Apply unique SSIDs for both Mesh Gateway and Mesh Point.
 
 #### Powering RPIs
 
