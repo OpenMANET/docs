@@ -31,9 +31,26 @@ This page walks you through downloading, flashing, and configuring the OpenMANET
 4. **Initial configuration**  
    Folow the wizard to cofigure the mesh gate and mesh points.
 
-
    *Reboot the Pi after flashing the image to fix multicast issues*
 
+### Important notice
+
+#### Automatic Rollback
+
+* When you make significant network changes (e.g., changing the router's IP address, subnet, or network protocol) in the LuCI web interface and click "Save & Apply," OpenWrt starts a timer (usually 90 seconds).
+* If your browser cannot re-establish a connection with the router before the timer runs out, OpenWrt assumes the new configuration is faulty and automatically reverts to the previous working settings to prevent you from being locked out. 
+
+#### SSIDs
+
+* HaLow radio
+      * Set a SSID name to be shared betweeen Mesh Gateway and all Mesh Points
+      * Set channel to 4MHz width and choose the same frequency on all devices connected over HaLow.
+* WiFi radio
+      * Apply unique SSIDs for both Mesh Gateway and Mesh Point.
+
+#### Powering RPIs
+
+* Ensure you have an adequate power source. Not providing sufficient power can result in a seemingly functional RPI but not enough to power HaLow / WiFi.
 
 ---
 
