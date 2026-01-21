@@ -1,20 +1,20 @@
 ---
 layout: default
 title: Networking
-nav_order: 4
+nav_order: 5
 permalink: /networking
 description: Explains the flat OpenMANET topology, addressing plan, and how mesh gates, mesh points, DHCP, MDNS, and BATMAN-V all fit together.
 ---
 
 # Networking
 
-OpenMANET purposely ships with an opinionated network design so that anyone—especially folks with limited networking experience,can assemble a working MANET without guesswork. The latest OpenMANET release moves every node onto a single `10.41.0.0/16` space, removes bridge mode from mesh gates, and layers **BATMAN-V** on top of **802.11s** to provide a true MANET. The result is a flat network for end users, even though the mesh is free to create multiple hops in the background.
+OpenMANET purposely ships with an opinionated network design so that anyone—especially folks with limited networking experience—can assemble a working MANET without guesswork. The latest OpenMANET release moves every node onto a single `10.41.0.0/16` space, removes bridge mode from mesh gates, and layers **BATMAN-V** on top of **802.11s** to provide a true MANET. The result is a flat network for end users, even though the mesh is free to create multiple hops in the background.
 
 ---
 
 ## Flat Mesh Domain for Every Use
 
-**All HaLow radios live in 10.41.0.0/16.** Each mesh point brings up `bat0` with a randomly selected static address like `10.41.113.1` and bridges it with Ethernet and the 2.4/5 GHz AP (`br-ahwlan`). The mesh gate reserves `10.41.1.1/16`.
+**All HaLow radios live in 10.41.0.0/16.** Each mesh point brings up `bat0` with a reserved static address (for example `10.41.113.1`) and bridges it with Ethernet and the 2.4/5 GHz AP (`br-ahwlan`). Mesh gateways are always within `10.41.0.0/24` (commonly `10.41.1.1`).
 
 **Every mesh point runs its own DHCP server.** Sixteen leases are handed out locally per node (`start 351`, `limit 16` by default). Tablets, TAK devices, or laptops plugged in via Ethernet or Wi-Fi still receive an address when the mesh gate is offline.
 
@@ -29,6 +29,18 @@ config device
 	list ports 'eth0'
 	list ports 'bat0'
 ```
+
+---
+
+## Addressing (Fresh Flash vs. After Setup)
+
+**Fresh flash address:** a newly flashed node starts at `10.41.254.1`.
+
+**After the initial wizard:** `openmanetd` reconciles addressing by asking other nodes to announce their IP/DHCP ranges, then reserves a static IP (and DHCP range) that is not in use. The node will reboot to apply the reserved settings.
+
+**Client hint:** if your end user device gets a `10.41.x.x` IP, it is on the mesh. After the node reboots post-setup, you may need to release/renew DHCP (or reconnect) so your device gets a fresh lease.
+
+**Safe static ranges:** you can safely assign static IPs within `10.41.253.0/24` and `10.41.254.0/24`. Auto addressing will not use those ranges.
 
 ---
 
@@ -50,7 +62,15 @@ config device
 
 **Always-on DHCP.** Because each node serves leases locally, clients retain connectivity even in a disconnected “dark” site where the mesh gate or upstream is unreachable.
 
-**MDNS across the mesh.** Avahi and Alfred advertise hostnames via multicast, so `hostname.local` lookups work on any node. This is how OpenMANET keeps SSH and web access simple without manual host files.
+**mDNS across the mesh.** OpenMANET supports mDNS reflection so you can reach nodes by name from anywhere on the mesh (on clients that support mDNS): `https://manet01.local` or `ssh root@manet01.local`.
+
+To list mDNS names from a node:
+- `ubus call umdns browse`
+- `avahi-browse -a`
+
+Note: `nslookup` typically will not resolve mDNS names.
+
+**Hostname-aware BATMAN tools.** `batctl` commands will resolve device hostnames (instead of only MAC addresses) after a few minutes for names to propagate.
 
 ---
 
@@ -61,6 +81,8 @@ config device
 **Bonding-ready.** Switching from BATMAN_IV to BATMAN_V opens the door to uplink bonding (HaLow + Wi-Fi or multiple USB Ethernet adapters) in future builds.
 
 **Multicast friendly.** New firewall rules plus the BATMAN multicast optimizations improve reliability for TAK, ADSBCOT, and MDNS traffic.
+
+**Second batman-adv interface.** A second batman-adv interface is included for future link bonding work.
 
 ---
 
@@ -80,8 +102,9 @@ Flash **all nodes** when upgrading to the latest OpenMANET so every device share
 
 | Component   | Key Details |
 |-------------|-------------|
-| Mesh Gate   | Router-only, NAT enabled, static `10.41.1.1/16`, DHCP/DNS for the mesh, WAN via DHCP |
-| Mesh Point  | Random static `10.41.xxx.1`, 16-client DHCP pool, bridges `bat0` + `eth0` + local AP |
+| Fresh Flash | Node starts at `10.41.254.1` before the wizard |
+| Mesh Gate   | Router-only, NAT enabled, static IP in `10.41.0.0/24`, DHCP/DNS for the mesh, WAN via DHCP |
+| Mesh Point  | Reserved static `10.41.xxx.1`, local DHCP, bridges `bat0` + `eth0` + local AP |
 | Client Link | Connect via Ethernet or unique 2.4/5 GHz SSID on each node |
-| Discovery   | MDNS + Alfred broadcast hostnames/services across the mesh |
+| Discovery   | mDNS (`hostname.local`) + service announcements across the mesh |
 | Routing     | 802.11s + BATMAN-V for MANET resiliency and future uplink bonding |
