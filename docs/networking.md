@@ -98,6 +98,51 @@ Flash **all nodes** when upgrading to the latest OpenMANET so every device share
 
 ---
 
+## Troubleshooting
+
+### See What BATMAN Thinks Is On The Mesh
+
+Use `batctl dc` to view the distributed ARP table. This is a quick way to confirm which nodes/clients are currently visible on the mesh, along with their IPs and “last seen” time (and, after hostname propagation, their hostnames):
+
+```sh
+root@manet01:~# batctl dc
+[B.A.T.M.A.N. adv 2024.3-openwrt-6, MainIF/MAC: wlan0/2c:c6:82:8a:2b:ca (bat0/9a:c2:84:47:71:98 BATMAN_V)]
+Distributed ARP Table (bat0):
+          IPv4             MAC        VID   last-seen
+ *       10.41.0.1 manet01_br-ahwlan   -1      0:09
+ *    10.41.88.231 manet02_br-ahwlan   -1      1:54
+ *     10.41.0.111 0e:12:80:92:f7:dc   -1      0:39
+ *   10.41.254.229 manet03_br-ahwlan   -1      0:38
+```
+
+In the output above, entries ending in `_br-ahwlan` are mesh nodes; entries shown as raw MAC addresses are typically end user devices behind a node.
+
+### Browse mDNS Services
+
+Use `avahi-browse -a` to see mDNS-advertised hostnames and services currently visible on the mesh:
+
+```sh
+root@manet01:~# avahi-browse -a
++ br-ahwlan IPv6 manet02                                       _ssh._tcp            local
++ br-ahwlan IPv4 manet03                                       _ssh._tcp            local
++ br-ahwlan IPv4 manet02                                       _ssh._tcp            local
++ br-ahwlan IPv6 manet02                                       _http._tcp           local
++ br-ahwlan IPv4 manet03                                       _http._tcp           local
++ br-ahwlan IPv4 manet02                                       _http._tcp           local
++ br-ahwlan IPv6 manet02 [c6:2a:60:bd:a5:6e]                   _workstation._tcp    local
++ br-ahwlan IPv4 manet03 [b2:95:f1:69:d9:0a]                   _workstation._tcp    local
++ br-ahwlan IPv4 manet03 [b8:27:eb:6c:45:ac]                   _workstation._tcp    local
++ br-ahwlan IPv4 manet02 [c6:2a:60:bd:a5:6e]                   _workstation._tcp    local
++ br-ahwlan IPv6 MacBook Air (3)                               _companion-link._tcp local
++ br-ahwlan IPv4 MacBook Air (3)                               _companion-link._tcp local
++ br-ahwlan IPv6 7A55CB537445@MacBook Air (3)                  _raop._tcp           local
++ br-ahwlan IPv4 7A55CB537445@MacBook Air (3)                  _raop._tcp           local
++ br-ahwlan IPv6 MacBook Air (3)                               _airplay._tcp        local
++ br-ahwlan IPv4 MacBook Air (3)                               _airplay._tcp        local
+```
+
+---
+
 ## Quick Reference
 
 | Component   | Key Details |
