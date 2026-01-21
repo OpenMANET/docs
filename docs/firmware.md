@@ -24,6 +24,23 @@ OpenMANET firmware filenames include the information you need to select the corr
 
 > **Important:** Select your firmware downloads carefully. If you are using a Seeed Studio HaLow board, you typically want an image with `spi` in the name.
 
+### HaLow Interface Guidance (SPI vs SDIO)
+
+- `spi` images are intended for SPI-based HaLow HATs (most commonly the Seeed WM1302 + Wio-WM6108 setups).
+- `sdio` images are intended for SDIO-based HaLow modules (for example Silex or Alfa SDIO boards).
+
+> Note: SDIO images can work across different SDIO boards, but the board configuration file (BCF) must match your specific radio/module. The default BCF is tuned for an Alfa board; for other SDIO boards you will need to obtain the correct BCF from the manufacturer and apply it.
+
+### SBC Target Mapping
+
+Use this as a quick guide for the `rpiX` part of the filename:
+
+| SBC | Use firmware with |
+|-----|-------------------|
+| Raspberry Pi 4 / CM4 | `rpi4` |
+| Raspberry Pi 3B | `rpi3` |
+| Raspberry Pi Zero 2 W (Pi2W) | `rpi3` |
+
 ---
 
 ## Image Type: `sysupgrade`

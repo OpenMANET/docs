@@ -20,7 +20,7 @@ This page lists the recommended parts and supported boards for building an OpenM
 |--------|--------|-------|
 | Raspberry Pi 4 / CM4 | ✅ Tested | Onboard Wi‑Fi works in AP mode on SPI-based builds |
 | Raspberry Pi 3B | ✅ Supported | Requires selecting the correct image for your HaLow interface |
-| Raspberry Pi 2W | ✅ Supported | Requires selecting the correct image for your HaLow interface |
+| Raspberry Pi Zero 2 W (Pi2W) | ✅ Supported | Uses the `rpi3` firmware images; requires selecting the correct HaLow interface |
 
 ### HaLow
 
@@ -40,7 +40,7 @@ This page lists the recommended parts and supported boards for building an OpenM
 | [WM1302 Pi Hat](https://www.seeedstudio.com/WM1302-Pi-Hat-p-4897.html) | No |
 | [External Antenna 868/915 MHz 2 dBi SMA Foldable](https://www.seeedstudio.com/External-Antenna-868-915MHZ-2dBi-SMA-L195mm-Foldable-p-5863.html) | No |
 | [UF.L to SMA-K 1.13 mm Cable (120 mm)](https://www.seeedstudio.com/UF-L-SMA-K-1-13-120mm-p-5046.html) | No |
-| Raspberry Pi (Pi 4 / CM4 / Pi 3B / Pi 2W) | No |
+| Raspberry Pi (Pi 4 / CM4 / Pi 3B / Pi2W) | No |
 | [21700 Rechargeable Batteries](https://www.amazon.com/dp/B0D3GX96H6?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_4) | Yes |
 | [WaveShare UPS B (18650 version)](https://www.amazon.com/gp/product/B0D39VDMDP/ref=ox_sc_saved_title_1?smid=A3B0XDFTVR980O&psc=1) | Yes |
 | [Panda PAU06 USB Wi-Fi Adapter](https://www.amazon.com/dp/B00762YNMG?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1) | Yes |
@@ -55,12 +55,13 @@ HaLow modules connect to the Raspberry Pi through different interfaces depending
 | Interface | Description | Supported on |
 |------------|-------------|--------------|
 | SDIO | High-speed 4-bit data bus. Offers better throughput and lower latency. | Image-dependent (common on Pi 4 / Pi 3B / CM4) |
-| SPI | Serial Peripheral Interface used by some HaLow HATs (for example Seeed boards). Easier to wire but typically slower than SDIO. | Image-dependent (Pi 4 / CM4 / Pi 3B / Pi 2W supported on current firmware) |
+| SPI | Serial Peripheral Interface used by some HaLow HATs (for example Seeed boards). Easier to wire but typically slower than SDIO. | Image-dependent (Pi 4 / CM4 / Pi 3B / Pi2W supported on current firmware) |
 
 Notes:  
 - Select firmware downloads carefully: the board type, Morse Micro chipset (MM6108 vs MM8108), and interface (SPI vs SDIO) are part of the firmware filename.
 - On SDIO-based HaLow builds, onboard Wi‑Fi usually cannot be used due to SDIO bus conflicts.
 - On SPI-based HaLow builds, onboard Wi‑Fi can be used for client access (AP mode).
+- In general, `spi` images are for SPI-based Seeed HaLow boards; `sdio` images are for SDIO-based modules (for example Silex or Alfa).
 
 ---
 
@@ -68,6 +69,7 @@ Notes:
 
 Some HaLow radios use board configuration files (BCF) to set calibration and regulatory parameters.
 
+- SDIO images ship with a default BCF tuned for an Alfa SDIO board. If you are using a different SDIO module (for example Silex), you will need to obtain the correct BCF from the manufacturer and apply it.
 - A BCF for the Alfa AHM26108D is included, but it is **not loaded by default** and must be applied manually for now.
 
 ---
