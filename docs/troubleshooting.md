@@ -40,8 +40,17 @@ Note: `nslookup` typically will not resolve mDNS names.
 
 ---
 
+## Power Problems Look Like “Network” Problems
+
+A weak power supply, thin USB cable, or low batteries can cause strange, hard-to-diagnose issues (random reboots, radios dropping, services failing to start, flaky USB devices, or SD card corruption).
+
+If you see weird behavior:
+- Try a known-good power supply and cable (short, thick cable recommended).
+- If you’re running on batteries/UPS, make sure they can provide enough current under load and are fully charged.
+
+---
+
 ## Quick Mesh Sanity Checks
 
 - If your end user device gets a `10.41.x.x` IP, it is on the mesh.
 - After running the wizard, the node will reboot after address/DHCP reservation; reconnect or renew DHCP on your end user device if needed.
-
