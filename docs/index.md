@@ -32,6 +32,8 @@ This design is deliberately opinionated to reduce the amount of networking knowl
 
 See [Firmware & Releases](./firmware) for download guidance, naming conventions, and `1.6.x` release notes.
 
+If you run into issues, start with [Troubleshooting](./troubleshooting) (including the recommended “wipe and re-flash” recovery path).
+
 
 ## Advantages vs. the Seeed image
 - Different BCF radio file increases TX power (≈21 dBm → **27 dBm**)  

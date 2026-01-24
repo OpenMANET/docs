@@ -14,7 +14,7 @@ This page walks you through downloading, flashing, and configuring the OpenMANET
 ## Setup Steps
 
 1. **Download the latest OpenMANET image**  
-   Go to the Releases section: [OpenMANET OpenWrt Releases](https://github.com/OpenMANET/openwrt/releases) and download the image.
+   Go to the Releases section: [OpenMANET Firmware Releases](https://github.com/OpenMANET/firmware/releases) and download the image.
 
 2. **Flash the image to an SD card**  
    Use the official Raspberry Pi guide for instructions on flashing the image:  

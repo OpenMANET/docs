@@ -8,7 +8,7 @@ description: Firmware download guidance, naming conventions, and notable changes
 
 # Firmware & Releases
 
-Firmware images are published on GitHub: [OpenMANET OpenWrt Releases](https://github.com/OpenMANET/openwrt/releases)
+Firmware images are published on GitHub: [OpenMANET Firmware Releases](https://github.com/OpenMANET/firmware/releases)
 
 This page covers how to choose the correct image and summarizes notable changes in the `1.6.x` line.
 
@@ -55,6 +55,8 @@ OpenMANET release assets are published as `sysupgrade` images (for example: `...
 If you want a truly fresh install, we recommend fully formatting the SD card with SD Card Formatter before re-flashing:
 
 - https://www.sdcard.org/downloads/formatter/
+
+In SD Card Formatter, use **Overwrite format**.
 
 ---
 

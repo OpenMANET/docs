@@ -1,7 +1,7 @@
 ---
 layout: default
 title: ADS-B to CoT
-nav_order: 7
+nav_order: 8
 permalink: /adsb-to-cot
 description: ADS-B to Cursor on Target gateway using ADSBCOT on OpenMANET images.
 ---
