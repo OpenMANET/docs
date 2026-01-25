@@ -1,14 +1,34 @@
 ---
 layout: default
 title: Hardware
-nav_order: 3
+nav_order: 4
 permalink: /hardware
 description: Covers what devices are recommended for OpenMANET
 ---
 
 # Hardware
 
-This page lists the recommended parts and supported boards for building an OpenMANET node. The project is designed for Raspberry Pi–based devices running OpenWrt, using Wi-Fi HaLow boards from Morse Micro.
+This page lists the recommended parts and supported boards for building an OpenMANET node. The project is designed for Raspberry Pi–based devices running OpenWrt, using Wi‑Fi HaLow boards from Morse Micro (MM6108/MM8108).
+
+---
+
+## Supported Hardware (Firmware-Dependent)
+
+### SBC
+
+| Device | Status | Notes |
+|--------|--------|-------|
+| Raspberry Pi 4 / CM4 | ✅ Tested | Onboard Wi‑Fi works in AP mode on SPI-based builds |
+| Raspberry Pi 3B | ✅ Supported | Requires selecting the correct image for your HaLow interface |
+| Raspberry Pi Zero 2 W (Pi2W) | ✅ Supported | Uses the `rpi3` firmware images; requires selecting the correct HaLow interface |
+
+### HaLow
+
+| Device | Interface | MM Chipset | Notes |
+|--------|-----------|------------|-------|
+| Seeed WM1302 + Wio-WM6108 | SPI | 6108 | Common “Seeed board” setup |
+| Silex SX-SDMAH | SDIO | 6108 | |
+| Alfa AHPI6108E | SDIO | 6108 | |
 
 ---
 
@@ -20,7 +40,7 @@ This page lists the recommended parts and supported boards for building an OpenM
 | [WM1302 Pi Hat](https://www.seeedstudio.com/WM1302-Pi-Hat-p-4897.html) | No |
 | [External Antenna 868/915 MHz 2 dBi SMA Foldable](https://www.seeedstudio.com/External-Antenna-868-915MHZ-2dBi-SMA-L195mm-Foldable-p-5863.html) | No |
 | [UF.L to SMA-K 1.13 mm Cable (120 mm)](https://www.seeedstudio.com/UF-L-SMA-K-1-13-120mm-p-5046.html) | No |
-| [Raspberry Pi 4 Model B (1 GB or greater)](https://www.seeedstudio.com/Raspberry-Pi-4-Computer-Model-B-1GB-p-4078.html) | No |
+| Raspberry Pi (Pi 4 / CM4 / Pi 3B / Pi2W) | No |
 | [21700 Rechargeable Batteries](https://www.amazon.com/dp/B0D3GX96H6?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_4) | Yes |
 | [WaveShare UPS B (18650 version)](https://www.amazon.com/gp/product/B0D39VDMDP/ref=ox_sc_saved_title_1?smid=A3B0XDFTVR980O&psc=1) | Yes |
 | [Panda PAU06 USB Wi-Fi Adapter](https://www.amazon.com/dp/B00762YNMG?ref_=ppx_hzsearch_conn_dt_b_fed_asin_title_1) | Yes |
@@ -34,13 +54,23 @@ HaLow modules connect to the Raspberry Pi through different interfaces depending
 
 | Interface | Description | Supported on |
 |------------|-------------|--------------|
-| SDIO | High-speed 4-bit data bus. Native interface for most Pi models (e.g., Pi 3B+, Pi 2W). Offers better throughput and lower latency. | Raspberry Pi 3B+, Pi 2W, CM4 |
-| SPI | Serial Peripheral Interface used by Seeed’s WM6180 mini-PCIe HAT. Easier to wire but slower than SDIO. | Raspberry Pi 4 only (currently supported) |
+| SDIO | High-speed 4-bit data bus. Offers better throughput and lower latency. | Image-dependent (common on Pi 4 / Pi 3B / CM4) |
+| SPI | Serial Peripheral Interface used by some HaLow HATs (for example Seeed boards). Easier to wire but typically slower than SDIO. | Image-dependent (Pi 4 / CM4 / Pi 3B / Pi2W supported on current firmware) |
 
 Notes:  
-- The Seeed WM6180 board uses SPI, which is not yet supported on Pi 3B+ and Pi 2W.  
-- SDIO HaLow boards are the only option for Pi 3B+ and Pi 2W at this time.  
-- Separate firmware images will be available for SDIO-based Pi models.
+- Select firmware downloads carefully: the board type, Morse Micro chipset (MM6108 vs MM8108), and interface (SPI vs SDIO) are part of the firmware filename.
+- On SDIO-based HaLow builds, onboard Wi‑Fi usually cannot be used due to SDIO bus conflicts.
+- On SPI-based HaLow builds, onboard Wi‑Fi can be used for client access (AP mode).
+- In general, `spi` images are for SPI-based Seeed HaLow boards; `sdio` images are for SDIO-based modules (for example Silex or Alfa).
+
+---
+
+## Radio Calibration (BCF Files)
+
+Some HaLow radios use board configuration files (BCF) to set calibration and regulatory parameters.
+
+- SDIO images ship with a default BCF tuned for an Alfa SDIO board. If you are using a different SDIO module (for example Silex), you will need to obtain the correct BCF from the manufacturer and apply it.
+- A BCF for the Alfa AHM26108D is included, but it is **not loaded by default** and must be applied manually for now.
 
 ---
 
@@ -103,8 +133,8 @@ These cards currently operate as normal Wi-Fi access points.
 | WCN6856     | M.2 E Key  | no  |  |
 | QCA6174     | M.2 E Key  | yes | You can only have one wifi network defined when using 802.11s |
 | MT7921      | M.2 E Key  | no  | |
-| MT7915DAN   | M.2 BM Key | yes | Dual Band AX, 802.11s Mesh Works, Power Draw is to high or there is a kernel issue with 5.15.  Crashes within 1-2min |
-| MT7916AED   | M.2 AE Key | yes | Dual Band AX, 802.11s Mesh Works, Power Draw is to high or there is a kernel issue with 5.15.  Crashes within 1-2min |
+| MT7915DAN   | M.2 BM Key | yes | Dual Band AX; 802.11s mesh works, but stability may vary by kernel/driver |
+| MT7916AED   | M.2 AE Key | yes | Dual Band AX; 802.11s mesh works, but stability may vary by kernel/driver |
 
 
 Work is underway to support bonding of HaLow (915 MHz) and 2.4 GHz links together using BATMAN-V for multi-band uplinks.
@@ -113,8 +143,7 @@ Work is underway to support bonding of HaLow (915 MHz) and 2.4 GHz links togethe
 
 ## Development Notes and Future Plans
 
-- Support for Seeed’s SPI-based HaLow module on Pi 3B+ and 2W is in progress.  
-- Separate firmware builds for SDIO and SPI boards will simplify setup.  
+- Separate firmware builds for SDIO and SPI boards simplify setup.  
 - CM4 carrier boards are increasingly recommended for advanced configurations.  
 - Future releases will expand multi-gateway mesh support and improve multicast reliability.  
 

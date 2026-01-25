@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Range Testing
-nav_order: 5
+nav_order: 7
 description: Field test results of Wi-Fi HaLow (802.11ah) mesh networking with Raspberry Pi HATs at Pulpit Rock, Colorado Springs.
 ---
 
@@ -15,6 +15,8 @@ This round of testing went pretty well overall. The setup was running on a **2 M
 The **Starlink and Mesh Gateway** were staged on top of **Pulpit Rock** in Colorado Springs, with tests conducted at different spots around the rock. All tests used a **Muzi Works whip antenna**. I planned to compare another antenna but forgot them at home.  
 
 Next round of testing will be with **multiple nodes** and on **1, 4, and 8 MHz channels**. When testing locally at 8 MHz, I hit **~15 Mbps**, so it’ll be interesting to see how that holds up at distance.
+
+> Note: Recent OpenMANET firmware improves automatic GPSd configuration on Seeed-based nodes, which makes long-running range tests more “plug and play”.
 
 ---
 

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: ADS-B to CoT
-nav_order: 6
+nav_order: 8
 permalink: /adsb-to-cot
 description: ADS-B to Cursor on Target gateway using ADSBCOT on OpenMANET images.
 ---
@@ -10,7 +10,7 @@ description: ADS-B to Cursor on Target gateway using ADSBCOT on OpenMANET images
 
 Display Aircraft in TAK — ADS-B feed to TAK Gateway.
 
-ADSBCOT is bundled directly into the OpenMANET image, preconfigured with sensible defaults so you can forward aircraft tracks into the Team Awareness Kit (TAK) ecosystem with minimal effort. The integration is intentionally opinionated: it assumes an RTL-SDR–based receiver and multicasts the resulting Cursor on Target (CoT) data across the mesh for TAK clients to consume.
+ADSBCOT is available for OpenMANET via `opkg`, but it is not installed by default. Once installed and enabled, you can forward aircraft tracks into the Team Awareness Kit (TAK) ecosystem with minimal effort. The integration is intentionally opinionated: it assumes an RTL-SDR–based receiver and multicasts the resulting Cursor on Target (CoT) data across the mesh for TAK clients to consume.
 
 For deeper details, refer to the [official ADSBCOT documentation](https://github.com/snstac/adsbcot).
 
@@ -23,16 +23,24 @@ For deeper details, refer to the [official ADSBCOT documentation](https://github
 - Compatible with ATAK, TAKX, WinTAK, and iTAK.
 - Supports multiple ADS-B data aggregators and COTS receivers.
 - Accepts over-the-air RF ADS-B via SDR hardware.
-- Runs on Python 3.7+ across Windows and Linux (already packaged for OpenMANET).
+- Runs on Python 3.7+ across Windows and Linux.
 
 ---
 
 ## Getting Started on OpenMANET
 
-1. **Connect the SDR**  
-   Plug an RTL-SDR dongle into your Raspberry Pi (USB 3 preferred). This satisfies the default ADSBCOT configuration baked into the image.
+1. **Install ADSBCOT**  
+   Install via LuCI (System → Software → Update lists → search `adsbtocot` → Install) or via CLI:
 
-2. **Enable the services**  
+   ```bash
+   opkg update
+   opkg install adsbtocot
+   ```
+
+2. **Connect the SDR**  
+   Plug an RTL-SDR dongle into your Raspberry Pi (USB 3 preferred).
+
+3. **Enable the services**  
    ADSB to CoT relies on two OpenWrt services:
    - `dump1090` (collects raw ADS-B frames from the SDR)  
    - `adsbtocot` (translates the feed into CoT and multicasts it)
@@ -44,7 +52,7 @@ For deeper details, refer to the [official ADSBCOT documentation](https://github
    /etc/init.d/adsbtocot enable && /etc/init.d/adsbtocot start
    ```
 
-3. **Verify multicast delivery**  
+4. **Verify multicast delivery**  
    Check on a device running ATAK if the COTS messages are flowing.
 
 That’s it, once the SDR is connected and the services are running, aircraft will appear in ATAK/WinTAK just like any other TAK marker.
