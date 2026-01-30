@@ -37,10 +37,8 @@ logLevel: info
 # Mesh network interface (default: "br-ahwlan")
 meshNetInterface: br-ahwlan
 
-# Enable gateway mode (default: false)
-gatewayMode: false
-
 # Database file path (default: "/etc/openmanetd/openmanetd.db")
+# DO NOT CHANGE
 dbFile: /etc/openmanetd/openmanetd.db
 
 # GNSS/GPS configuration
@@ -71,7 +69,6 @@ alfred:
     gateway: true          # Gateway announcements (default: true)
     node: true            # Node information (default: true)
     position: true        # GPS position data (default: true)
-    addressReservation: true  # IP address reservations (default: true)
 ```
 
 ### Configuration Defaults
@@ -80,7 +77,6 @@ alfred:
 |--------|--------------|-------------|
 | `logLevel` | `info` | Logging level (debug, info, warn, error) |
 | `meshNetInterface` | `br-ahwlan` | Primary mesh network interface |
-| `gatewayMode` | `false` | Enable mesh gateway functionality |
 | `dbFile` | `/etc/openmanetd/openmanetd.db` | SQLite database location |
 | `resetDBOnStart` | `false` | Clear database on daemon startup |
 | `gnss.enable` | `false` | Enable GNSS/GPS functionality |
@@ -92,7 +88,6 @@ alfred:
 | `alfred.dataTypes.gateway` | `true` | Publish gateway information |
 | `alfred.dataTypes.node` | `true` | Publish node information |
 | `alfred.dataTypes.position` | `true` | Publish GPS positions |
-| `alfred.dataTypes.addressReservation` | `true` | Handle IP reservations |
 
 ### Hot Reload
 
