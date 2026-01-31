@@ -67,10 +67,7 @@ Notes:
 
 ## Radio Calibration (BCF Files)
 
-Some HaLow radios use board configuration files (BCF) to set calibration and regulatory parameters.
-
-- SDIO images ship with a default BCF tuned for an Alfa SDIO board. If you are using a different SDIO module (for example Silex), you will need to obtain the correct BCF from the manufacturer and apply it.
-- A BCF for the Alfa AHM26108D is included, but it is **not loaded by default** and must be applied manually for now.
+HaLow radios use board configuration files (BCF) to set calibration and regulatory parameters. Some cards or devices, may need to acquire the BCF file from the manufacturer, and be copied to each device.
 
 ---
 
