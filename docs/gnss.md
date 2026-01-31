@@ -26,6 +26,9 @@ The GNSS module connected or included with your mesh radio provides:
 ## Supported Hardware
 **Seeed WM1302 + Wio-WM6108**
 The GPS receiver is automatically enabled on OpenMANET hardware.  The device appears at `/dev/ttyACM0`.
+Please Note:
+- The GPS antenna that comes with the Wio-WM6108 is not that great.  Consider getting a better antenna.
+- Do not expect to get any or much signal indoors.  GNSS signals are fairly week unless you have a really good antenna.
 
 Any **u-blox based USB GPS receiver** that works with gpsd should also function with OpenMANET. This may require manual configuration of `/etc/config/gpsd`.
 
