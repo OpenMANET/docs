@@ -79,9 +79,9 @@ alfred:
 | `meshNetInterface` | `br-ahwlan` | Primary mesh network interface |
 | `dbFile` | `/etc/openmanetd/openmanetd.db` | SQLite database location |
 | `resetDBOnStart` | `false` | Clear database on daemon startup |
-| `gnss.enable` | `false` | Enable GNSS/GPS functionality |
-| `gnss.sendAsExternalGNSSSource.sendAsNMEA` | `false` | Send position as NMEA sentences |
-| `gnss.sendAsExternalGNSSSource.sendAsCoT` | `false` | Send position as CoT messages |
+| `gnss.enable` | `true` | Enable GNSS/GPS functionality |
+| `gnss.sendAsExternalGNSSSource.sendAsNMEA` | `true` | Send position as NMEA sentences |
+| `gnss.sendAsExternalGNSSSource.sendAsCoT` | `true` | Send position as CoT messages |
 | `alfred.mode` | `primary` | Alfred synchronization mode |
 | `alfred.batInterface` | `bat0` | BATMAN-adv interface name |
 | `alfred.socketPath` | `/var/run/alfred.sock` | Alfred Unix socket |
@@ -107,11 +107,9 @@ OpenMANETd uses Protocol Buffers (protobuf) for two distinct purposes:
 
 ### Protobuf Repository
 
-The protobuf message definitions are maintained in a separate repository as a Git submodule:
+The protobuf schema is hosted with Buf Registry:
 
-- Repository: [github.com/OpenMANET/protobufs](https://github.com/OpenMANET/protobufs)
-- Local path: Submodule in the `openmanetd` repository
-- Generation: `make buf` or `buf generate`
+- Repository: [OpenMANET Buf Schema Registry](https://buf.build/openmanet/protobufs)
 
 ### Internal Mesh Messages
 
@@ -132,8 +130,6 @@ message Node {
 }
 ```
 
-**ALFRED Data Type**: Configurable (default: custom type for node data)
-
 **Distribution**: Sent every 60 seconds by all nodes
 
 **Usage Example**:
@@ -148,12 +144,6 @@ nodeData := &proto.Node{
         Altitude:  10.5,
     },
 }
-
-// Marshal to protobuf
-data, _ := nodeData.MarshalVT()
-
-// Publish via ALFRED
-alfredClient.Set(nodeDataType, data)
 ```
 
 #### Gateway Message
@@ -169,9 +159,7 @@ message Gateway {
 }
 ```
 
-**ALFRED Data Type**: Type 1 (BATMAN-adv standard gateway type)
-
-**Distribution**: 
+**Distribution**:
 - Send: Every 60 seconds (gateway nodes only)
 - Receive: Every 10 seconds (all nodes)
 

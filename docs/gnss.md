@@ -18,7 +18,6 @@ The GNSS module connected or included with your mesh radio provides:
 
 - **Automatic position tracking** from TPV (Time-Position-Velocity) reports
 - **NMEA GGA sentence streaming** to connected EUD clients
-- **ATAK CoT (Cursor on Target) messaging** for tactical situational awareness
 - **Position data in mesh announcements** for topology visualization
 - **Position data in the API** for extendable functionality
 
@@ -70,23 +69,6 @@ $GPGGA,123045.00,3746.4946,N,12225.1640,W,1,08,1.0,50.0,M,0.0,M,,*47
 
 This allows tactical applications like ATAK to receive real-time GPS position from the mesh node.
 
-### ATAK CoT Integration
-
-If **no DHCP leases are found** (no EUDs connected), the GPS service falls back to sending **Cursor on Target (CoT) protobuf messages** to the ATAK Situational Awareness multicast address:
-
-- **Multicast Address:** `239.2.3.1:6969`
-- **Message Type:** `G-U-U-S-R` (Ground Unit / Radio Unit)
-- **Callsign:** `<hostname>-manet`
-- **Platform:** Derived from board model (e.g., "Raspberry Pi 4 Model B")
-
-The CoT message includes:
-- **Position:** Latitude, longitude, altitude (HAE - Height Above Ellipsoid)
-- **Group:** "MANET" with role "Radio Unit"
-- **Track data:** Speed and course
-- **Device info:** OS ("OpenMANET"), hostname, and platform name
-
-This enables ATAK clients on the mesh to see OpenMANET nodes as radio units on the tactical map.
-
 ### Position Sharing in Mesh Announcements
 
 When GPS is enabled and a valid position is available, nodes include their position in **node data announcements** sent periodically across the mesh.
@@ -99,9 +81,6 @@ This allows:
 The node data worker checks GPS validity before including position data (mode > 1) and logs the current position at the debug level.
 
 ---
-
-## API / Position Access
-
 
 ## Automatic Reconnection
 
