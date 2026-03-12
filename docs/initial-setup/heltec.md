@@ -1,11 +1,3 @@
----
-layout: default
-title: Heltec
-parent: Initial Setup
-nav_order: 3
-permalink: /initial-setup/heltec
-description: Step-by-step guide to flash OpenMANET firmware onto the Heltec HT-HD01 V2.
----
 
 # How to flash OpenMANET onto the HT-HD01 V2
 
