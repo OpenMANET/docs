@@ -15,18 +15,6 @@ This walkthrough is geared toward a stock flashed HT-HD01 V2.
 
 ---
 
-### Download the firmware
-
-Download the latest firmware from the [OpenMANET releases page](https://github.com/OpenMANET/firmware/releases).
-
-Look for the file matching this pattern:
-
-`openmanet-*-ramips-mt76x8-heltec_ht-hd01-v2-squashfs-sysupgrade.bin`
-
-The key identifiers to look for are `mt76x8`, `heltec`, and `ht-hd01-v2` in the filename.
-
----
-
 ### 1. Connect to the HT-HD01 V2's Wi-Fi network
 
 The default password to the network is `heltec.org`
