@@ -41,12 +41,6 @@ The HT-HD01 V2 is a compact Wi-Fi HaLow gateway based on the MediaTek MT7628AN S
 
 ---
 
-### Flashing
-
-Flash via the OpenWrt web interface: navigate to **System > Backup / Flash Firmware**, upload the sysupgrade image, and uncheck "Keep settings" for a clean install.
-
----
-
 ### Radio Calibration (BCF Files)
 
 The HT-HD01 V2 requires the board-specific calibration file `bcf_HD01_v2.bin` for the MM6108 HaLow radio. This BCF is included in the OpenMANET firmware image and is configured automatically.
@@ -70,5 +64,6 @@ The HT-HD01 V2 requires the board-specific calibration file `bcf_HD01_v2.bin` fo
 - Only the HT-HD01 V2 is supported. The HT-HD01 V1 is not supported.
 - The 2.4 GHz radio operates in AP mode only.
 - Ethernet port is 100 Mbps (no gigabit).
+- CPU performance is bad to the point where is affects webui load times.
 
 ---
