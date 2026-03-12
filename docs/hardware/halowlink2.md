@@ -39,12 +39,6 @@ The HaLow Link 2 is a Wi-Fi HaLow router, access point, and extender made by Mor
 
 ---
 
-### Flashing
-
-Flash via the OpenWrt web interface: navigate to **System > Backup / Flash Firmware**, upload the sysupgrade image, and uncheck "Keep settings" for a clean install.
-
----
-
 ### Radio Calibration (BCF Files)
 
 The HaLow Link 2 uses the board-specific calibration file `bcf_mm_hl2_ext.bin` for the MM8108 HaLow radio. This BCF is included in the OpenMANET firmware image and is configured automatically.
