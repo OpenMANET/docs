@@ -48,7 +48,7 @@ The default password should be `heltec.org`
 
 **IMPORTANT: You need to be flashing the correct bin for this board. Please double check.**
 The image you are looking for will have ht-hd01-v2 in the filename. Images can be found here https://github.com/OpenMANET/firmware/releases
-`openmanet-24.10-1.6.4-ramips-mt76x8-heltec_ht-hd01-v2-squashfs-sysupgrade.bin`
+
 
 ![Step 9 screenshot](https://images.tango.us/workflows/b86ae31f-8e7e-48f1-9f5b-885d3f25dda7/steps/d45a2cea-2e8c-4f1b-81d1-8d493a61b777/fec02933-3c00-450f-8c6b-f55322de2702.png?crop=focalpoint&fit=crop&fp-x=0.4699&fp-y=0.5273&fp-z=2.0000&w=1200&border=2%2CF4F2F7&border-radius=8%2C8%2C8%2C8&border-radius-inner=8%2C8%2C8%2C8&mark-x=207&mark-y=148&m64=aHR0cHM6Ly9pbWFnZXMudGFuZ28udXMvc3RhdGljL2JsYW5rLnBuZz9tYXNrPWNvcm5lcnMmYm9yZGVyPTYlMkNGRjc0NDImdz00NTcmaD0zNiZmaXQ9Y3JvcCZjb3JuZXItcmFkaXVzPTEw)
 
