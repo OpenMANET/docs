@@ -1,3 +1,11 @@
+---
+layout: default
+title: Heltec HT-HD01-V2 Initial Setup
+parent: Initial Setup
+nav_order: 2
+permalink: /initial-setup/heltec
+description: How to flash OpenMANET onto the HT-HD01 V2
+---
 
 # How to flash OpenMANET onto the HT-HD01 V2
 
