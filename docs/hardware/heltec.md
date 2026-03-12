@@ -41,24 +41,6 @@ The HT-HD01 V2 is a compact Wi-Fi HaLow gateway based on the MediaTek MT7628AN S
 
 ---
 
-### Build Instructions
-
-To compile the OpenMANET firmware for the HT-HD01 V2:
-
-```bash
-./scripts/openmanet_setup.sh -i -b ht-hd01-v2
-make download
-make -j$(nproc)
-```
-
-The output image will be located at:
-
-```
-bin/targets/ramips/mt76x8/openmanet-*-ramips-mt76x8-heltec_ht-hd01-v2-squashfs-sysupgrade.bin
-```
-
----
-
 ### Flashing
 
 Flash via the OpenWrt web interface: navigate to **System > Backup / Flash Firmware**, upload the sysupgrade image, and uncheck "Keep settings" for a clean install.
