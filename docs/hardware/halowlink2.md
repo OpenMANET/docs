@@ -26,7 +26,6 @@ The HaLow Link 2 is a Wi-Fi HaLow router, access point, and extender made by Mor
 | Feature | Details |
 |---------|---------|
 | SoC | MediaTek MT7621 (MIPS 1004Kc, dual-core, 880 MHz) |
-| Architecture | MIPS 1004Kc (mipsel) |
 | RAM | 256 MB DDR3 |
 | Flash | 32 MB SPI NOR |
 | HaLow Radio | Morse Micro MM8108 (SDIO interface) |
