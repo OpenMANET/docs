@@ -9,7 +9,7 @@ description: How to flash OpenMANET onto the HaLow Link 2
 
 # How to flash OpenMANET on HaLow Link 2
 
-![HaLow Link 2](https://www.morsemicro.com/wp-content/webp-express/webp-images/uploads/2025/09/HaLowLink-2-photos-1-scaled-e1758174909409-681x1024.png.webp)
+<img src="https://www.morsemicro.com/wp-content/webp-express/webp-images/uploads/2025/09/HaLowLink-2-photos-1-scaled-e1758174909409-681x1024.png.webp" alt="HaLow Link 2" width="70%" />
 
 ---
 
