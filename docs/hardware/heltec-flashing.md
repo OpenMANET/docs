@@ -11,6 +11,8 @@ description: Step-by-step guide to flash OpenMANET firmware onto the Heltec HT-H
 
 This walkthrough is geared toward a stock flashed HT-HD01 V2.
 
+![HT-HD01 V2](https://heltec.org/wp-content/uploads/2024/12/7-3-768x768.png)
+
 ---
 
 ### 1. Connect to the HT-HD01 V2's Wi-Fi network
