@@ -9,7 +9,7 @@ description: How to flash OpenMANET onto the HaLow Link 2
 
 # How to flash OpenMANET on HaLow Link 2
 
-<img src="https://www.morsemicro.com/wp-content/webp-express/webp-images/uploads/2025/09/HaLowLink-2-photos-1-scaled-e1758174909409-681x1024.png.webp" alt="HaLow Link 2" width="70%" />
+<img src="https://www.cnx-software.com/wp-content/uploads/2026/01/GL.iNet-HaLowLink-2-WiFi-HaLow-access-point-extender.jpg" alt="HaLow Link 2" width="70%" />
 
 ---
 
