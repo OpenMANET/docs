@@ -30,6 +30,7 @@ The HT-HD01 V2 is a compact Wi-Fi HaLow gateway based on the MediaTek MT7628AN S
 | Feature | Details |
 |---------|---------|
 | SoC | MediaTek MT7628AN (MIPS 24KEc, 580 MHz) |
+| Architecture | MIPS 24KEc (mipsel) |
 | RAM | 128 MB DDR2 |
 | Flash | 32 MB SPI NOR |
 | HaLow Radio | Morse Micro MM6108 (SDIO interface) |
