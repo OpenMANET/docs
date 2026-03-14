@@ -22,7 +22,8 @@ OpenMANET runs on Raspberry Pi–based devices paired with Wi‑Fi HaLow (802.11
 | Raspberry Pi 3B | ✅ Supported | Requires selecting the correct image for your HaLow interface |
 | Raspberry Pi Zero 2 W | ✅ Supported | Uses `rpi3` firmware images; suitable for lightweight/portable nodes |
 | HaLowLink2 | ✅ Supported | Integrated HaLow device — see [HaLowLink2](./hardware/halowlink2) |
-| Heltec | 🔧 In Progress | See [Heltec](./hardware/heltec) for current status |
+| Heltec | ✅ Supported  | See [Heltec](./hardware/heltec) for current status |
+| Gateworks Venice | ✅ Supported | See [Gateworks Venice](./hardware/venice) |
 
 ---
 
@@ -33,6 +34,7 @@ OpenMANET runs on Raspberry Pi–based devices paired with Wi‑Fi HaLow (802.11
 | Seeed WM1302 + Wio-WM6108 | SPI | MM6108 | Common "Seeed board" setup; works on all supported Pi variants |
 | Silex SX-SDMAH | SDIO | MM6108 | |
 | Alfa AHPI6108E | SDIO | MM6108 | |
+| Gateworks GW16167 | M.2 E-Key (USB) | MM8108 | |
 
 ### Interface Types at a Glance
 
@@ -40,6 +42,7 @@ OpenMANET runs on Raspberry Pi–based devices paired with Wi‑Fi HaLow (802.11
 |-----------|------------|----------------|----------------|
 | SPI | Lower | ✅ Available (AP mode) | Seeed WM1302 HAT |
 | SDIO | Higher | ❌ Conflicts with HaLow bus | Silex, Alfa |
+| USB | Higher | N/A | Gateworks GW16167 |
 
 ---
 
@@ -61,3 +64,4 @@ OpenMANET runs on Raspberry Pi–based devices paired with Wi‑Fi HaLow (802.11
 | [Raspberry Pi Variants](./hardware/raspberry-pi) | Detailed parts list, SDIO/SPI reference, CM4 carrier boards, and M.2 Wi‑Fi cards |
 | [HaLowLink2](./hardware/halowlink2) | HaLowLink2-specific hardware notes |
 | [Heltec](./hardware/heltec) | Heltec hardware support |
+| [Gateworks Venice](./hardware/venic) | Gateworks Venice hardware support |
