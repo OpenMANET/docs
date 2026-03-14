@@ -9,6 +9,14 @@ description: How to flash OpenMANET onto the HT-HD01 V2
 
 # How to flash OpenMANET onto the HT-HD01 V2
 
+**IMPORTANT**:
+V1 and V2 devices look identical except on a V2 device you will find the model name with `V2` printed on the device.  If you load OpenMANET firmware on a V1 device it may not work and you may brick your device.  We are not responsible if you do not check this carefully.
+
+Make absolutely sure you are only flashing a V2 device.
+
+**Please Note**:
+The HD01 SOC is much slower than other devices.  The flashing time takes a few minutes.  BE PATIENT.  The WebUI will also operate a bit slower and take longer to load.  This is normal on these devices.
+
 This walkthrough is geared toward a stock flashed HT-HD01 V2.
 
 ![HT-HD01 V2](../pics/heltec-setup/product.png)
@@ -73,6 +81,13 @@ The image you are looking for will have ht-hd01-v2 in the filename. Images can b
 ### 13. Uncheck "Keep settings"
 
 ![Step 13 screenshot](../pics/heltec-setup/step13.jpg)
+
+### 13b. **IMPORTANT**
+If you are flashing a Heltec HT-HD01-**V2** with OpenMANET for the first time you will get the following warning.
+- Uncheck `Keep settings and retain the current configuration`.
+- Check `Force Upgrade`.  IT IS ONLY SAFE TO DO THIS IF YOU HAVE AN HT-HD01-**V2**.
+
+![Step 13B screenshot](../pics/heltec-setup/step13b.jpg)
 
 ### 14. Click Continue
 
