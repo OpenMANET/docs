@@ -22,6 +22,7 @@ OpenMANET is designed for Raspberry Pi–based devices running OpenWrt, using Wi
 | Raspberry Pi 4 / CM4 | ✅ Tested | Onboard Wi‑Fi works in AP mode on SPI-based builds |
 | Raspberry Pi 3B | ✅ Supported | Requires selecting the correct image for your HaLow interface |
 | Raspberry Pi Zero 2 W (Pi2W) | ✅ Supported | Uses the `rpi3` firmware images; requires selecting the correct HaLow interface |
+| [MCU Zone CM4-4G_Plus](https://www.aliexpress.us/item/3256808130597667.html) | ✅ Supported | For use with the GW16167 (MM8108). mPCIE to m.2 E-Key adapter needed |
 
 ### HaLow
 
@@ -30,7 +31,7 @@ OpenMANET is designed for Raspberry Pi–based devices running OpenWrt, using Wi
 | Seeed WM1302 + Wio-WM6108 | SPI | 6108 | Common "Seeed board" setup |
 | Silex SX-SDMAH | SDIO | 6108 | |
 | Alfa AHPI6108E | SDIO | 6108 | |
-
+| Gateworks GW16167 | M.2 E-Key (USB) | MM8108 | m.2 E-Key (USB Signaling) Interface |
 ---
 
 ## Recommended Parts List
