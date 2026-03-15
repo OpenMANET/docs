@@ -29,33 +29,48 @@ For deeper details, refer to the [official ADSBCOT documentation](https://github
 
 ## Getting Started on OpenMANET
 
-1. **Install ADSBCOT**  
-   Install via LuCI (System → Software → Update lists → search `adsbtocot` → Install) or via CLI:
+1. **Install ADSBCOT**
+   Install via LuCI (System -> Software -> Update lists -> search `adsbtocot` -> Install) or CLI:
 
    ```bash
    opkg update
    opkg install adsbtocot
    ```
 
-2. **Connect the SDR**  
-   Plug an RTL-SDR dongle into your Raspberry Pi (USB 3 preferred).
-
-3. **Enable the services**  
-   ADSB to CoT relies on two OpenWrt services:
-   - `dump1090` (collects raw ADS-B frames from the SDR)  
-   - `adsbtocot` (translates the feed into CoT and multicasts it)
-
-   Enable them via the OpenWrt GUI (System → Startup) or through the CLI:
+   If using an older `adsbtocot` package revision that does not pull crypto dependencies automatically:
 
    ```bash
-   /etc/init.d/dump1090 enable && /etc/init.d/dump1090 start
-   /etc/init.d/adsbtocot enable && /etc/init.d/adsbtocot start
+   opkg install python3-cryptography
    ```
 
-4. **Verify multicast delivery**  
-   Check on a device running ATAK if the COTS messages are flowing.
+2. **Connect the SDR**
+   Plug an RTL-SDR dongle into your Raspberry Pi (USB 3 preferred).
 
-That’s it, once the SDR is connected and the services are running, aircraft will appear in ATAK/WinTAK just like any other TAK marker.
+3. **Enable and start services**
+   ADS-B to CoT relies on two OpenWrt services:
+   - `dump1090` (collects ADS-B frames from SDR)
+   - `adsbcot` (converts ADS-B feed to CoT)
+
+   Enable via OpenWrt GUI (System -> Startup) or CLI:
+
+   ```bash
+   /etc/init.d/dump1090 enable
+   /etc/init.d/dump1090 start
+   /etc/init.d/adsbcot enable
+   /etc/init.d/adsbcot start
+   ```
+
+4. **Verify service state**
+
+   ```bash
+   which adsbcot
+   pgrep -af "adsbcot|dump1090"
+   logread -e adsbcot | tail -n 40
+   ```
+
+5. **Confirm in TAK**
+   Open ATAK/WinTAK/iTAK and verify aircraft CoT markers are appearing.
+
 
 <img src="pics/adsb/rtl.jpeg" alt="RTL-SDR dongle connected for ADS-B capture" width="360" />
 
