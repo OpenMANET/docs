@@ -31,3 +31,8 @@ just_the_docs:
   search_enabled: true
   heading_anchors: true
 color_scheme: dark
+
+mermaid:
+  # Version of mermaid library
+  # Pick an available version from https://cdn.jsdelivr.net/npm/mermaid/
+  version: "11.4.1"

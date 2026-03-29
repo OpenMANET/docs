@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Troubleshooting
-nav_order: 6
+nav_order: 7
 permalink: /troubleshooting
 description: Quick checks for mesh connectivity, hostname access via mDNS, and a recommended recovery path if setup gets messy.
 ---
