@@ -10,6 +10,8 @@ description: Step-by-step setup guides for all supported OpenMANET devices.
 
 Select your device platform below for a step-by-step guide to downloading, flashing, and configuring OpenMANET.
 
+**NOTE: It is strongly recommend to NOT use 8Mhz for bandwidth or auto channel.**
+
 | Device | Guide |
 |--------|-------|
 | Raspberry Pi (4, CM4, 3B, Zero 2 W) | [Raspberry Pi Setup](./initial-setup/raspberry-pi) |

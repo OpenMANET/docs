@@ -2,6 +2,7 @@
 layout: default
 title: OpenMANETd Daemon
 nav_order: 10
+has_children: true
 permalink: /openmanetd
 description: openmanetd is the core management daemon for the OpenMANET mesh network.
 ---
@@ -34,13 +35,6 @@ Below is the **default** `config.yml` with all available options:
 # Log level: "debug", "info", "warn", "error" (default: "info")
 logLevel: info
 
-# Mesh network interface (default: "br-ahwlan")
-meshNetInterface: br-ahwlan
-
-# Database file path (default: "/etc/openmanetd/openmanetd.db")
-# DO NOT CHANGE
-dbFile: /etc/openmanetd/openmanetd.db
-
 # GNSS/GPS configuration
 gnss:
   # Enable GNSS functionality (default: false)
@@ -53,22 +47,6 @@ gnss:
     # Send position as Cursor-on-Target (CoT) (default: false)
     sendAsCoT: true
 
-# Alfred configuration
-alfred:
-  # Alfred mode: "primary" or "secondary" (default: "primary")
-  mode: "primary"
-
-  # BATMAN-adv interface (default: "bat0")
-  batInterface: "bat0"
-
-  # Alfred socket path (default: "/var/run/alfred.sock")
-  socketPath: "/var/run/alfred.sock"
-
-  # Data types to enable
-  dataTypes:
-    gateway: true          # Gateway announcements (default: true)
-    node: true            # Node information (default: true)
-    position: true        # GPS position data (default: true)
 ```
 
 ### Configuration Defaults
