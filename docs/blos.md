@@ -93,19 +93,9 @@ Because batman-adv treats `battunnel0` identically to any other mesh link, routi
 
 ### 4. Multicast Group Forwarding
 
-**BLOS joins the standard OpenMANET multicast groups on the mesh interface** so that batman-adv forwards multicast traffic across the VXLAN link to remote segments. The following groups are joined via IGMP:
-
-| Address         | Purpose                          |
-|-----------------|----------------------------------|
-| `239.2.3.1`     | ATAK Situational Awareness (SA) |
-| `224.10.10.1`   | ATAK Chat                       |
-| `224.0.0.251`   | mDNS service discovery          |
-| `239.192.41.1`  | OpenMANET Talk Groups (voice)   |
+**BLOS bridges the layer 2 broadcast domain** so that batman-adv forwards multicast traffic across the VXLAN link to remote segments. All multicast traffic will forward across the BLOS links:
 
 VXLAN peers are also created for each multicast address so that multicast traffic can be delivered across the tunnel without requiring a multicast-capable underlay.
-
-{: .note }
-When the Comms subsystem is enabled, BLOS skips joining the Talk Group address (`239.192.41.1`) because the Comms subsystem manages that group membership independently.
 
 ### 5. Automatic Peer Synchronization
 
@@ -159,6 +149,20 @@ Before enabling BLOS, ensure:
 ---
 
 ## Configuration
+
+### Web UI (Recommended)
+1. Navigate to http://{node ip}:8080 and log in with the same credentials as the OpenWRT interface
+2. Goto the BLOS page on the left hand sidebar
+3. Paste your pre-auth key from Tailscale or Headscale
+4. If using Headscale, enter your login server address
+5. Toggle the off button to on.
+6. Click the Update BLOS config button
+
+![Enable BLOS](./pics/blos/enable-blos.png)
+
+Your node will reboot the first time you enable BLOS to clear out any potential route issues.  This is only needed the first time you enable it.
+
+OpenMANETd will automatically manage routes between your peers to bridge the mesh networks together.
 
 ### Static Configuration (config.yml)
 If you want to setup BLOS manually you first need to enable and start the tailscale service in the LuCI web ui.
