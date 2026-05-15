@@ -73,7 +73,7 @@ A 2-second idle reset also catches edge cases where a sender restarts without ro
 
 The Opus encoder's `packetLossPerc` knob controls how much in-band FEC redundancy it adds to every encoded frame. Comms runs a small control loop called **FECAdapter** that ticks every 2 seconds, reads each receive-capable port's gap-run histogram from the jitter buffer, and moves the encoder's FEC level through three discrete steps (`20` → `30` → `40`).
 
-The configured `comms.packetLossPerc` value (default 20, clamped to `[10, 40]`) is the **floor** — the adapter only ramps up above it, never below.
+The configured `comms.packetLossPerc` value (default 30, clamped to `[10, 40]`) is the **floor** — the adapter only ramps up above it, never below.
 
 State machine specifics:
 
@@ -84,7 +84,7 @@ State machine specifics:
 
 The design assumes link symmetry — every node reads its own RX loss and applies the result to its own TX encoder. On omnidirectional mesh links that holds because link quality is effectively reciprocal.
 
-**Operators don't tune this** — it's automatic. Just know that it's running, and that brief RX loss on one node quietly raises the FEC overhead on its next transmission.
+**Users don't tune this** — it's automatic. Just know that it's running, and that brief RX loss on one node quietly raises the FEC overhead on its next transmission.
 
 ---
 
@@ -111,7 +111,7 @@ The per-PTT cycle stats log line surfaces the relevant counters so you don't hav
 
 ---
 
-## Volume buttons (OpenVLM)
+## Volume buttons (OpenVLM - Not Active Yet)
 
 The `openvlm` control source decodes more than just the PTT button. The OpenVLM dongle's VOL+ and VOL− buttons emit aux events on a separate channel, and a built-in `alsa.Controller` translates them into `Master` mixer steps on the ALSA card the OpenVLM was auto-detected as. The card index comes from the `ALSA_CARD` environment variable that comms set during startup; if `ALSA_CARD` is unset or non-numeric, volume events are silently ignored. The default control name is `Master` (one raw step ≈ 1 dB on CM108B). Errors from ALSA are swallowed — a missing mixer never crashes the daemon.
 

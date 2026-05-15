@@ -21,8 +21,14 @@ Over time as we get to feature parity with what we want from the OpenWRT interfa
 
 Open a browser on a device connected to the mesh (over Ethernet, Wi-Fi, or another mesh node) and navigate to:
 
+Simple Node Management (HTTP)
 ```
 http://<node-ip>:8080
+```
+
+Web Based Comms (HTTPS Required)
+```
+https://<node-ip>:8081
 ```
 
 If mDNS is working on your client, the hostname form also works:
@@ -32,7 +38,7 @@ http://<hostname>.local:8080
 ```
 
 ### Authentication
-After setup, the UI is protected by a username/password set during the wizard. You'll land on a login page; once authenticated, every subsequent request is gated by `ProtectedRoute` and signed with an auth token until you sign out.
+After setup, the UI is protected by a username/password set during the wizard.
 
 You can change the password later from **Settings → General**.
 

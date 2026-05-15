@@ -13,7 +13,7 @@ The ATAK **Voice plugin** ("Vx", v1.7.8 and later) supports a **Multicast** chan
 
 This page covers the **Multicast Only** path. The Voice plugin's Mumble path is a separate, server-mediated topology that has nothing to do with OpenMANET comms and is not documented here.
 
-> **Codec parity is not verified in writing.** The Voice plugin user guide does not document its multicast codec, sample rate, frame size, or RTP payload type. OpenMANET comms uses Opus 48 kHz mono, 20 ms frames, RTP payload type 111. Treat the configuration below as transport-level interop and confirm end-to-end audio with the listening test in [step 6](#6-listening-test) before relying on it operationally.
+> **Codec parity is not verified in writing.** The Voice plugin user guide does not document its multicast codec, sample rate, frame size, or RTP payload type. OpenMANET comms uses Opus 48 kHz mono, 20 ms frames, RTP payload type 111. We have tested with the Vx plugin, and audio does work, but updates to the plugin may break compatability.
 
 ---
 
@@ -37,6 +37,14 @@ Before opening the plugin, write down the three values you'll be entering. They 
 | Multicast address | Mission / Channel **Multicast IP** |
 | Port | Mission / Channel **Port** |
 | Transport (always RTP) | Mission / Channel **Default Protocol** → **RTP** |
+
+| OpenMANET Talk Groups | RTP port |
+|---|-------|
+| 1 | 38801 |
+| 2 | 38803 |
+| 3 | 38805 |
+| 4 | 38807 |
+| 5 | 38809 |
 
 The Voice plugin's protocol toggle has two positions, **UDP** and **RTP**. You **must** pick **RTP**. UDP mode sends raw audio with no RTP header and will not interoperate with OpenMANET's RTP receivers.
 
@@ -72,7 +80,7 @@ The plugin auto-creates an **Engineering Channel** for every multicast mission. 
 Before doing a listening test, confirm packets are flowing in both directions. On any mesh node, with the talk group port (example: `5007`):
 
 ```bash
-tcpdump -i br-ahwlan -nn -vv udp and portrange 5007-5008
+tcpdump -i br-ahwlan -nn -vv udp and portrange 38801-38809
 ```
 
 - Press PTT on the ATAK device. You should see UDP packets with the **ATAK device's IP** as source, destined to the talk group's multicast address on port 5007.
@@ -100,11 +108,9 @@ Do not assume audio interop until both directions pass this test.
 
 ## 7. Caveats
 
-- **Codec parity is not verified in writing.** Always run the [listening test](#6-listening-test) on a fresh deployment.
 - **Use RTP, never UDP.** The Voice plugin's UDP mode sends raw audio with no RTP header. OpenMANET will not understand it.
 - **Multicast TTL.** OpenMANET sets multicast TTL to 1. That's fine across a single BATMAN-V mesh but will not cross routed boundaries — the ATAK device must be on the same L2 broadcast domain (`br-ahwlan`) as a mesh point.
 - **Half-duplex is one-sided.** OpenMANET enforces half-duplex within a talk group (see [How comms works](how-it-works.md#half-duplex)). The Voice plugin does not — multiple ATAK users can PTT at once, and those overlapping streams will collide on OpenMANET receivers. Apply normal voice discipline.
-- **No RTCP consumption.** OpenMANET sends RTCP Sender Reports but does not process inbound RTCP, and the Voice plugin guide makes no mention of RTCP. Nothing breaks; there's just no loss feedback either way.
 - **Engineering Channel does not bridge.** It only reaches Voice-plugin users on the same mission.
 
 ---

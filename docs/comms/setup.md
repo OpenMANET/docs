@@ -85,11 +85,7 @@ On first startup **only the first talk group** is send/receive-enabled. If you'v
 
 Additional talk groups beyond the first one start dormant. You don't need to restart the daemon to activate them — comms exposes runtime toggles on its `Service` handle:
 
-- `EnableTalkGroupSend(idx, bool)` — turn the transmit side of talk group `idx` on or off.
-- `EnableTalkGroupReceive(idx, bool)` — turn the receive side on or off.
-- `TalkGroupStates()` — snapshot the current state of every configured talk group.
-
-These are reachable through the openmanetd RPC layer — see [Protobuf API](../openmanetd/protobuf-api.md) for how to issue requests against the daemon.
+These are reachable through the openmanetd RPC layer — see [Protobuf API](https://buf.build/openmanet/protobufs/docs/main%3Aopenmanet.comms.v1) for how to issue requests against the daemon.
 
 ---
 
@@ -112,7 +108,7 @@ With `debug: true` in the comms config, transmit on the node and watch `openmane
 On the network, a `tcpdump` on the mesh interface during PTT should show RTP packets on the talk group's multicast address and RTCP Sender Reports every 5 seconds on `port + 1`:
 
 ```bash
-tcpdump -i br-ahwlan -n udp and portrange 5007-5008
+tcpdump -i br-ahwlan -n udp and portrange 38801-38809
 ```
 
 (Substitute your actual interface name and talk-group port pair.)

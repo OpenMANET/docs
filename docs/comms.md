@@ -37,9 +37,7 @@ Comms is the OpenMANET push-to-talk (PTT) voice subsystem. It runs as part of `o
 Comms supports four PTT control sources, selected by the `comms.controlSource` config key:
 
 - **`openvlm`** *(default)* — OpenVLM USB HID dongle. GPIO3 on the dongle is the PTT button: press → `PTTDown`, release → `PTTUp` (hold-to-talk). VOL+ / VOL− buttons on the dongle also drive the system ALSA mixer via a built-in `alsa.Controller` aux event handler.
-- **`roip`** — The same OpenVLM dongle, but without a manual button: bridges an analog handheld radio into the mesh using the radio's Carrier-Operated Squelch (COS) line, with VOX energy detection as a fallback.
 - **`web`** — Browser-driven PTT. The browser owns audio I/O and the malgo audio backend is bypassed entirely, so this mode works on nodes with no sound card.
-- **`nanoptt`** — Linux evdev key input. Any matching key press toggles transmission (press-to-toggle, not hold-to-talk).
 
 ---
 
