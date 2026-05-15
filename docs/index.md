@@ -19,6 +19,21 @@ This project aims to provide a flexible HaLow mesh radio using Raspberry Pi hard
 > Note: On SDIO-based HaLow builds, the onboard Wi‑Fi usually shares the SDIO bus and cannot be used. On SPI-based HaLow builds (for example Seeed boards), onboard Wi‑Fi works for client access (AP mode).
 
 ---
+## Feature Matrix
+| Hardware    | Core Network | Comms | BLOS | New UI | Notes |
+|-------------|--------------|-------|------|--------|-------|
+| Pi4         | ✅           | ✅    | ✅   | ✅     |      |
+| Venice      | ✅           | ✅    | ✅   | ✅     |      |
+| Pi2W        |     ✅       | ❓    | ❓   | ✅     |  Have not tested well for comms or BLOS    |
+| Pi3B        | ✅           | ❓    | ❓   | ✅     |  Have not tested well for comms or BLOS   |
+| HaLowLink2  | ✅           |❌     | ✅   | ✅     |  Not supported on 1.7.0 Yet |
+| HT-HD01V2   | ✅           |❌     | ❌   |    ❓  |  Not supported on 1.7.0 Yet   |
+
+> Note: The HaLowLink2 and Heltec HT-HD01V2 are extremely storage limited.
+> HalowLink2 - Might be able to do WebUI Comms but poorly
+> HT-HD01V2 - USB-C is needed for power, cannot plugin the OpenVLM at the same time. Single slow CPU Core, so newer features may never work.
+
+---
 
 ## Networking Model
 - The mesh exposes a flat `10.41.0.0/16` LAN to end users, even though BATMAN-V may send frames over multiple HaLow hops in the background.
