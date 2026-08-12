@@ -9,7 +9,7 @@ description: Raspberry Pi camera support, MediaMTX RTSP streaming, and ATAK Sens
 
 # Cameras
 
-OpenMANET supports Raspberry Pi CSI cameras on its Raspberry Pi 4/CM4, Raspberry Pi 3B, and Raspberry Pi Zero 2 W images. When a compatible camera is connected, the node automatically provides an RTSP stream through MediaMTX. If the node also has a valid GPS fix, `openmanetd` advertises the camera to ATAK with Cursor-on-Target (CoT) messages.
+OpenMANET supports Raspberry Pi CSI cameras on its Raspberry Pi 4/CM4, Raspberry Pi 3B, and Raspberry Pi Zero 2 W images. When a compatible camera is connected, the node automatically provides an RTSP stream through MediaMTX. If the node also has a valid position, `openmanetd` advertises the camera to ATAK with Cursor-on-Target (CoT) messages.
 
 ## Supported Cameras
 
@@ -86,17 +86,23 @@ Camera advertisement in ATAK requires all of the following:
 - A camera detected by `cam -l`
 - GNSS enabled in `openmanetd`
 - CoT output enabled with `gnss.sendAsExternalGNSSSource.sendAsCoT: true`
-- A valid 2D or 3D GPS fix (`mode` 2 or 3)
+- A valid position from either the internal GPS receiver or a directly connected ATAK EUD using the external CoT source
 - An IPv4 address on `br-ahwlan`
 
-When these conditions are met, `openmanetd` sends a camera video event and a linked Sensor CoT event to the ATAK Situational Awareness multicast group at `239.2.3.1:6969`. Updates are rate-limited to once every 30 seconds. The sensor appears in ATAK at the node's GPS position, and its video entry points to the node's `/rpicamera` RTSP stream.
+When these conditions are met, `openmanetd` sends a camera video event and a linked Sensor CoT event to the ATAK Situational Awareness multicast group at `239.2.3.1:6969`. Updates are rate-limited to once every 30 seconds. The sensor appears in ATAK at the node's selected position, and its video entry points to the node's `/rpicamera` RTSP stream.
 
-If the camera works over RTSP but GPS reports `mode: 0` or `mode: 1`, the camera CoT is not sent because there is no valid position for the sensor marker.
+If the camera works over RTSP but the selected source has no valid position, the camera CoT is not sent because there is nowhere to place the sensor marker. In internal mode, GPS must report `mode: 2` or `mode: 3`. A node without a receiver can instead select **External · EUD (ATAK) via CoT** on the Web UI GPS page.
 
-Verify GNSS and outgoing CoT traffic with:
+For an internal receiver, verify its position with:
 
 ```sh
 gpspipe -w -n 10 2>/dev/null | grep '"class":"TPV"'
+```
+
+For the external CoT source, confirm the EUD has a local lease. Then verify outgoing camera CoT traffic:
+
+```sh
+cat /tmp/dhcp.leases
 tcpdump -ni br-ahwlan 'udp dst 239.2.3.1 and port 6969'
 ```
 
@@ -124,7 +130,8 @@ MediaMTX will not remain running without a detected camera, and the ONVIF servic
 
 ### RTSP works but no camera appears in ATAK
 
-- Confirm the GPS TPV report has `"mode":2` or `"mode":3` and includes latitude and longitude.
+- For the internal source, confirm the GPS TPV report has `"mode":2` or `"mode":3` and includes latitude and longitude.
+- For the external CoT source, confirm the ATAK device is directly connected to the node and appears in `/tmp/dhcp.leases`.
 - Confirm CoT output is enabled in `/etc/openmanetd/config.yml`.
 - Wait at least 30 seconds for the next multicast update.
 - Use `tcpdump` as shown above to confirm packets leave `br-ahwlan`.

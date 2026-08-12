@@ -40,6 +40,9 @@ gnss:
   # Enable GNSS functionality (default: false)
   enable: true
 
+  # Position source: "internal" or "external_cot"
+  source: internal
+
   # External GNSS source configuration
   sendAsExternalGNSSSource:
     # Send position as NMEA sentences (default: false)
@@ -58,6 +61,7 @@ gnss:
 | `dbFile` | `/etc/openmanetd/openmanetd.db` | SQLite database location |
 | `resetDBOnStart` | `false` | Clear database on daemon startup |
 | `gnss.enable` | `true` | Enable GNSS/GPS functionality |
+| `gnss.source` | `internal` | Use a local gpsd receiver (`internal`) or CoT from a directly connected EUD (`external_cot`) |
 | `gnss.sendAsExternalGNSSSource.sendAsNMEA` | `true` | Send position as NMEA sentences |
 | `gnss.sendAsExternalGNSSSource.sendAsCoT` | `true` | Send position as CoT messages |
 | `alfred.mode` | `primary` | Alfred synchronization mode |

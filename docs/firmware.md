@@ -73,6 +73,7 @@ In SD Card Formatter, use **Overwrite format**.
 - Most Wi‑Fi driver kernel modules included by default; additional packages available via `opkg`
 - Custom packages migrated to `openmanet/packages` and included via `feed.conf`
 - Improved automatic GPSd configuration for Seeed-based nodes
+- GNSS position source can use either a local receiver or CoT from a directly connected ATAK EUD
 
 ### Networking & Discovery
 
