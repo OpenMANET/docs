@@ -83,6 +83,12 @@ This allows:
 
 The node data worker checks GPS validity before including position data (mode > 1) and logs the current position at the debug level.
 
+### Camera Sensor CoT
+
+On Raspberry Pi nodes with a detected camera, a valid 2D or 3D GPS fix allows `openmanetd` to place the camera on the ATAK map. The node sends a linked camera video event and Sensor CoT event to the ATAK SA multicast address at `239.2.3.1:6969`. The advertised video URL uses the node's OpenMANET address and the MediaMTX RTSP path `rtsp://<node-ip>:554/rpicamera`.
+
+Both the camera and a valid GPS position are required. A camera can still provide RTSP video without a GPS fix, but it will not appear as a positioned sensor in ATAK until GPS reports mode 2 or 3. See [Camera Support](./hardware/cameras) for supported sensors and troubleshooting.
+
 ---
 
 ## Automatic Reconnection
