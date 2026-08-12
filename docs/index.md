@@ -26,10 +26,10 @@ This project aims to provide a flexible HaLow mesh radio using Raspberry Pi hard
 |-------------|--------------|-------|------|--------|-------|
 | Pi4         | ✅           | ✅    | ✅   | ✅     |      |
 | Venice      | ✅           | ✅    | ✅   | ✅     |      |
-| Pi2W        |     ✅       | ❓    | ❓   | ✅     |  Have not tested well for comms or BLOS    |
+| Pi2W        | ✅           | ❓    | ❓   | ✅     |  Have not tested well for comms or BLOS    |
 | Pi3B        | ✅           | ❓    | ❓   | ✅     |  Have not tested well for comms or BLOS   |
-| HaLowLink2  | ✅           |❌     | ✅   | ✅     |  Not supported on 1.7.0 Yet |
-| HT-HD01V2   | ✅           |❌     | ❌   |    ❓  |  Not supported on 1.7.0 Yet   |
+| HaLowLink2  | ✅           |❌     | ✅   | ✅     |  OpenVLM Not Supported, Web Comms Supported |
+| HT-HD01V2   | ✅           |❌     | ❌   | ✅     |  Comms and BLOS not supported   |
 
 > Note: The HaLowLink2 and Heltec HT-HD01V2 are extremely storage limited.
 > HalowLink2 - Might be able to do WebUI Comms but poorly

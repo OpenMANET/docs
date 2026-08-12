@@ -34,7 +34,8 @@ OpenMANET runs on Raspberry Pi–based devices paired with Wi‑Fi HaLow (802.11
 | Seeed WM1302 + Wio-WM6108 | SPI | MM6108 | Common "Seeed board" setup; works on all supported Pi variants |
 | Silex SX-SDMAH | SDIO | MM6108 | |
 | Alfa AHPI6108E | SDIO | MM6108 | |
-| Gateworks GW16167 | M.2 E-Key (USB) | MM8108 | |
+| Gateworks GW16167 | M.2 E-Key (USB) | MM8108 | Up to +26dBm Transmit Power |
+| Gateworks GW16170 | M.2 E-Key (USB) | MM8108-M20 | Up to +28.5dBm Transmit Power |
 
 ### Interface Types at a Glance
 
@@ -42,7 +43,7 @@ OpenMANET runs on Raspberry Pi–based devices paired with Wi‑Fi HaLow (802.11
 |-----------|------------|----------------|----------------|
 | SPI | Lower | ✅ Available (AP mode) | Seeed WM1302 HAT |
 | SDIO | Higher | ❌ Conflicts with HaLow bus | Silex, Alfa |
-| USB | Higher | N/A | Gateworks GW16167 |
+| USB | Higher | N/A | Gateworks GW16167 & GW16170 |
 
 ---
 

@@ -63,9 +63,9 @@ In SD Card Formatter, use **Overwrite format**.
 ## Notable Changes (1.6.x)
 
 - OpenWrt `24.10` base
-- Linux kernel `6.6.104`
-- `mac80211` `6.12.6` (backported Wi‑Fi drivers)
-- Morse Micro drivers `1.16`
+- Linux kernel `6.6.138`
+- `mac80211` `6.12.61` (backported Wi‑Fi drivers)
+- Morse Micro drivers `2.x`
 - `openmanetd` (beta) manages low-level configuration and auto addressing
 - Expanded filesystem increased to `4GB`
 - Morse Micro MM6108 and MM8108 drivers enabled on all targets
