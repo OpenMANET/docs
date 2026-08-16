@@ -22,14 +22,14 @@ This project aims to provide a flexible HaLow mesh radio using Raspberry Pi hard
 
 ## Feature Matrix
 
-| Hardware    | Core Network | Comms | BLOS | New UI | Notes |
-|-------------|--------------|-------|------|--------|-------|
-| Pi4         | ✅           | ✅    | ✅   | ✅     |      |
-| Venice      | ✅           | ✅    | ✅   | ✅     |      |
-| Pi2W        |     ✅       | ❓    | ❓   | ✅     |  Have not tested well for comms or BLOS    |
-| Pi3B        | ✅           | ❓    | ❓   | ✅     |  Have not tested well for comms or BLOS   |
-| HaLowLink2  | ✅           |❌     | ✅   | ✅     |  Not supported on 1.7.0 Yet |
-| HT-HD01V2   | ✅           |❌     | ❌   |    ❓  |  Not supported on 1.7.0 Yet   |
+| Hardware    | Core Network | Camera | Comms | BLOS | New UI | Notes |
+|-------------|--------------|--------|-------|------|--------|-------|
+| Pi4         | ✅           | ✅     | ✅    | ✅   | ✅     | CSI camera support through libcamera and MediaMTX |
+| Venice      | ✅           | ❌     | ✅    | ✅   | ✅     |      |
+| Pi2W        | ✅           | ✅     | ❓    | ❓   | ✅     | Have not tested well for comms or BLOS |
+| Pi3B        | ✅           | ✅     | ❓    | ❓   | ✅     | Have not tested well for comms or BLOS |
+| HaLowLink2  | ✅           | ❌     | ❌    | ✅   | ✅     | OpenVLM Not Supported, Web Comms Supported |
+| HT-HD01V2   | ✅           | ❌     | ❌    | ❌   | ✅     | Comms and BLOS not supported |
 
 > Note: The HaLowLink2 and Heltec HT-HD01V2 are extremely storage limited.
 > HalowLink2 - Might be able to do WebUI Comms but poorly
@@ -48,6 +48,8 @@ This project aims to provide a flexible HaLow mesh radio using Raspberry Pi hard
 This design is deliberately opinionated to reduce the amount of networking knowledge you need to bring a cluster online. See the dedicated [Networking](./networking) page for the full breakdown.
 
 See [Firmware & Releases](./firmware) for download guidance, naming conventions, and `1.6.x` release notes.
+
+Raspberry Pi builds also support compatible CSI cameras, MediaMTX RTSP streaming, and GPS-positioned camera markers in ATAK. See [Camera Support](./hardware/cameras).
 
 If you run into issues, start with [Troubleshooting](./troubleshooting) (including the recommended “wipe and re-flash” recovery path).
 

@@ -8,6 +8,7 @@
   - 🧩 Firmware & releases: **[firmware](https://openmanet.github.io/docs/firmware)**
   - 🚀 Initial setup: **[initial-setup.html](https://openmanet.github.io/docs/initial-setup.html)**
   - 🧰 Hardware: **[hardware](https://openmanet.github.io/docs/hardware)**
+  - 📷 Cameras: **[hardware/cameras](https://openmanet.github.io/docs/hardware/cameras)**
   - 🕸️ Networking: **[networking](https://openmanet.github.io/docs/networking)**
   - 🛠️ Troubleshooting: **[troubleshooting](https://openmanet.github.io/docs/troubleshooting)**
   - 📡 Range testing: **[range-testing.html](https://openmanet.github.io/docs/range-testing.html)**
