@@ -30,12 +30,20 @@ For deeper details, refer to the [official ADSBCOT documentation](https://github
 ## Getting Started on OpenMANET
 
 1. **Install ADSBCOT**
-   Install via LuCI (System -> Software -> Update lists -> search `adsbtocot` -> Install) or CLI:
+   From an SSH session, add the OpenMANET package-signing public key, refresh the package lists, and install `adsbtocot`:
 
    ```bash
+   wget -O /tmp/openmanet.pub \
+     https://openmanet.github.io/packages-repo/openmanet.pub
+
+   opkg-key add /tmp/openmanet.pub
+
    opkg update
+
    opkg install adsbtocot
    ```
+
+   After adding the key, you can also install the package through LuCI: **System -> Software -> Update lists**, search for `adsbtocot`, and select **Install**.
 
    If using an older `adsbtocot` package revision that does not pull crypto dependencies automatically:
 

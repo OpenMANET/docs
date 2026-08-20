@@ -60,6 +60,23 @@ In SD Card Formatter, use **Overwrite format**.
 
 ---
 
+## Installing OpenMANET Packages
+
+Before installing a package from the OpenMANET package feed, add the feed's public signing key and refresh the package lists:
+
+```bash
+wget -O /tmp/openmanet.pub \
+  https://openmanet.github.io/packages-repo/openmanet.pub
+
+opkg-key add /tmp/openmanet.pub
+
+opkg update
+```
+
+You can then install the package with `opkg install <package-name>` or through LuCI under **System -> Software**.
+
+---
+
 ## Notable Changes (1.6.x)
 
 - OpenWrt `24.10` base
