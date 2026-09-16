@@ -12,7 +12,7 @@ description: Supported Raspberry Pi models, recommended parts, interface types, 
 OpenMANET is designed for Raspberry Pi–based devices running OpenWrt, using Wi‑Fi HaLow boards from Morse Micro (MM6108/MM8108).
 
 {: .note }
-For new Raspberry Pi 4 and CM4 builds, an MM8108 radio connected over USB provides higher peak throughput and improved receive sensitivity. The Seeed MM6108 SPI configuration remains an accessible option for the broader range of supported Raspberry Pi models.
+Choose one HaLow radio path: either the Seeed Wio-WM6108 card over SPI, or a Gateworks MM8108 card over USB. Do not buy both radio cards for the same node. The Seeed WM1302 Pi HAT can serve as the carrier for either path when the MM8108 is installed through a USB-capable adapter. For new Raspberry Pi 4 and CM4 builds, MM8108 provides higher peak throughput and improved receive sensitivity; the MM6108 SPI path supports the broader range of Raspberry Pi models.
 
 ---
 
@@ -37,18 +37,40 @@ For new Raspberry Pi 4 and CM4 builds, an MM8108 radio connected over USB provid
 | Silex SX-SDMAH | SDIO | 6108 | |
 | Alfa AHPI6108E | SDIO | 6108 | |
 
+### Choose One Radio Path
+
+The WM1302 Pi HAT is the carrier in both configurations below. The radio card plugged into it is **either** the Wio-WM6108 **or** a Gateworks MM8108—not both.
+
+| Radio path | Radio card | Additional adapter | Pi-to-HAT USB data cable | Firmware |
+|------------|------------|--------------------|--------------------------|----------|
+| Seeed MM6108 SPI | Wio-WM6108 | None | Not used for HaLow data | Matching `mm6108-spi` image |
+| Gateworks MM8108 USB | Choose GW16167 or GW16170 | GW16151 mini-PCIe-to-M.2 E-Key adapter | **Required** | `rpi4-mm8108-usb` |
+
 ### Why Choose MM8108?
 
 The MM8108 increases the maximum PHY rate from 32.5 Mbps to 43.3 Mbps and adds a USB 2.0 host interface. It is also generally 1–3 dB more sensitive than the MM6108 across many channel-width and modulation combinations. Although an MM6108 with OpenMANET's tuned configuration may transmit at slightly higher power than the standard MM8108, the MM8108 can decode weaker signals and retain faster data rates at lower signal levels.
 
 ### Reusing a Seeed WM1302 Pi HAT with MM8108
 
-An existing Seeed WM1302 Pi HAT can be reused when upgrading from an MM6108 SPI radio to a Gateworks MM8108 radio. This requires:
+An existing Seeed WM1302 Pi HAT can be reused when upgrading from an MM6108 SPI radio to a Gateworks MM8108 radio. Remove the Wio-WM6108 radio card and replace it with the adapter-and-MM8108 assembly; the two radio cards are alternatives. This requires:
 
 - A Gateworks GW16167 or GW16170 radio
 - A mini-PCIe-to-M.2 E-Key adapter that passes USB 2.0, such as the [Gateworks GW16151](https://www.gateworks.com/products/mini-pcie-expansion-cards/gw16151-mini-pcie-to-wifi-e-key-m-2-adapter-card/)
 - A USB-A-to-USB-C **data cable**
 - An appropriate 900 MHz antenna or pigtail for the radio's MMCX connector
+
+#### MM8108 USB Shopping List
+
+This list covers the radio-path-specific parts for a Raspberry Pi 4 or CM4 build using the WM1302 Pi HAT. Choose one radio in the first row.
+
+| Item | Purchase link | Notes |
+|------|---------------|-------|
+| MM8108 radio (choose one) | [GW16167 at DigiKey](https://www.digikey.com/en/products/detail/gateworks-corporation/GW16167/28244003) or [GW16170 at DigiKey](https://www.digikey.com/en/products/detail/gateworks-corporation/GW16170/29719103) | GW16167 is the standard global option; GW16170 is the high-power North America option |
+| M.2 E-Key-to-mini-PCIe adapter | [GW16151 at DigiKey](https://www.digikey.com/en/products/detail/gateworks-corporation/GW16151/21852415) | Must pass USB 2.0 |
+| Seeed WM1302 Pi HAT | [113100022 at DigiKey](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/113100022/14004100) | Reuse an existing HAT or buy one |
+| USB-A-to-USB-C data cable | [Tensility 10-06139 at DigiKey](https://www.digikey.com/en/products/detail/tensility-international-corp/10-06139/26808303) | USB 2.0 data cable; a charge-only cable will not work |
+| 900 MHz antenna | [Pulse W1063 at DigiKey](https://www.digikey.com/en/products/detail/pulse-electronics/W1063/1634416) | Gateworks lists the W1063 family for 902–928 MHz use |
+| MMCX-to-RP-SMA pigtail | [Samtec RF174-01SR1-03RP1-0305 at DigiKey](https://www.digikey.com/en/products/detail/samtec-inc/RF174-01SR1-03RP1-0305/17278929) | Connects the Gateworks radio's MMCX port to the W1063 antenna |
 
 Connect the components as follows:
 
@@ -71,8 +93,8 @@ Use the `rpi4-mm8108-usb` OpenMANET firmware image for this configuration. The p
 
 | Item | Optional |
 |------|----------|
-| [Wio WM6108 Wi-Fi HaLow mini PCIe Module](https://www.seeedstudio.com/Wio-WM6108-Wi-Fi-HaLow-mini-PCIe-Module-p-6394.html) | No |
-| [WM1302 Pi Hat](https://www.seeedstudio.com/WM1302-Pi-Hat-p-4897.html) | No |
+| Wio WM6108 Wi-Fi HaLow mini PCIe Module ([Seeed](https://www.seeedstudio.com/Wio-WM6108-Wi-Fi-HaLow-mini-PCIe-Module-p-6394.html), [DigiKey SKU 109990565](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/109990565/26553884)) | No |
+| WM1302 Pi HAT ([Seeed](https://www.seeedstudio.com/WM1302-Pi-Hat-p-4897.html), [DigiKey](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/113100022/14004100)) | No |
 | [External Antenna 868/915 MHz 2 dBi SMA Foldable](https://www.seeedstudio.com/External-Antenna-868-915MHZ-2dBi-SMA-L195mm-Foldable-p-5863.html) | No |
 | [UF.L to SMA-K 1.13 mm Cable (120 mm)](https://www.seeedstudio.com/UF-L-SMA-K-1-13-120mm-p-5046.html) | No |
 | Raspberry Pi (Pi 4 / CM4 / Pi 3B / Pi2W) | No |

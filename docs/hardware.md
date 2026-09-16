@@ -37,7 +37,7 @@ OpenMANET runs on Raspberry Pi–based devices paired with Wi‑Fi HaLow (802.11
 | [Gateworks GW16167](https://www.gateworks.com/products/wireless-options/gw16167-mm8108-802-11ah-halow-wifi-m2-card/) | M.2 E-Key (USB 2.0) | MM8108 | Recommended for new Pi 4 / CM4 builds; global radio; up to +26 dBm transmit power |
 | [Gateworks GW16170](https://www.gateworks.com/products/wireless-options/gw16170-mm8108-m20-802-11ah-halow-wifi-m2-card/) | M.2 E-Key (USB 2.0) | MM8108-M20 | High-power North America option; up to +28.5 dBm transmit power |
 
-The MM8108 offers higher peak throughput and improved receive sensitivity compared with the MM6108. Raspberry Pi 4 and CM4 users can also reuse a Seeed WM1302 Pi HAT with a USB-capable mini-PCIe-to-M.2 E-Key adapter and a required USB-A-to-USB-C data cable. See [Raspberry Pi Variants](./hardware/raspberry-pi#reusing-a-seeed-wm1302-pi-hat-with-mm8108) for the connection diagram and firmware guidance.
+Choose either an MM6108 radio or an MM8108 radio for a node; the cards are alternatives, not a combined radio setup. The MM8108 offers higher peak throughput and improved receive sensitivity compared with the MM6108. Raspberry Pi 4 and CM4 users can reuse a Seeed WM1302 Pi HAT with a USB-capable mini-PCIe-to-M.2 E-Key adapter and a required USB-A-to-USB-C data cable. See [Raspberry Pi Variants](./hardware/raspberry-pi#choose-one-radio-path) for the comparison, DigiKey shopping list, connection diagram, and firmware guidance.
 
 ### Interface Types at a Glance
 
