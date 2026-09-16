@@ -66,7 +66,7 @@ This list covers the radio-path-specific parts for a Raspberry Pi 4 or CM4 build
 | Item | Purchase link | Notes |
 |------|---------------|-------|
 | MM8108 radio (choose one) | [GW16167 at DigiKey](https://www.digikey.com/en/products/detail/gateworks-corporation/GW16167/28244003) or [GW16170 at DigiKey](https://www.digikey.com/en/products/detail/gateworks-corporation/GW16170/29719103) | GW16167 is the standard global option; GW16170 is the high-power North America option |
-| M.2 E-Key-to-mini-PCIe adapter | [GW16151 at DigiKey](https://www.digikey.com/en/products/detail/gateworks-corporation/GW16151/21852415) | Must pass USB 2.0 |
+| M.2 E-Key-to-mini-PCIe adapter | [GW16151 at DigiKey](https://www.digikey.com/en/products/detail/gateworks-corporation/GW16151/21852415) or [GLOTRENDS WA03 at Amazon](https://www.amazon.com/dp/B0B1MDN1HT) | Must pass USB 2.0. The WA03's bundled 2.4/5/6 GHz antennas are not suitable for the 900 MHz MM8108; use the antenna and pigtail listed below. |
 | Seeed WM1302 Pi HAT | [113100022 at DigiKey](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/113100022/14004100) | Reuse an existing HAT or buy one |
 | USB-A-to-USB-C data cable | [Tensility 10-06139 at DigiKey](https://www.digikey.com/en/products/detail/tensility-international-corp/10-06139/26808303) | USB 2.0 data cable; a charge-only cable will not work |
 | 900 MHz antenna | [Pulse W1063 at DigiKey](https://www.digikey.com/en/products/detail/pulse-electronics/W1063/1634416) | Gateworks lists the W1063 family for 902–928 MHz use |
