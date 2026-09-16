@@ -11,6 +11,9 @@ description: Supported Raspberry Pi models, recommended parts, interface types, 
 
 OpenMANET is designed for Raspberry Pi–based devices running OpenWrt, using Wi‑Fi HaLow boards from Morse Micro (MM6108/MM8108).
 
+{: .note }
+For new Raspberry Pi 4 and CM4 builds, an MM8108 radio connected over USB provides higher peak throughput and improved receive sensitivity. The Seeed MM6108 SPI configuration remains an accessible option for the broader range of supported Raspberry Pi models.
+
 ---
 
 ## Supported Hardware (Firmware-Dependent)
@@ -28,14 +31,43 @@ OpenMANET is designed for Raspberry Pi–based devices running OpenWrt, using Wi
 
 | Device | Interface | MM Chipset | Notes |
 |--------|-----------|------------|-------|
-| Seeed WM1302 + Wio-WM6108 | SPI | 6108 | Common "Seeed board" setup |
+| [Gateworks GW16167](https://www.gateworks.com/products/wireless-options/gw16167-mm8108-802-11ah-halow-wifi-m2-card/) | M.2 E-Key (USB 2.0) | MM8108 | Recommended for new Pi 4 / CM4 builds; global radio; up to +26 dBm transmit power |
+| [Gateworks GW16170](https://www.gateworks.com/products/wireless-options/gw16170-mm8108-m20-802-11ah-halow-wifi-m2-card/) | M.2 E-Key (USB 2.0) | MM8108-M20 | High-power option for North America; up to +28.5 dBm transmit power |
+| Seeed WM1302 + Wio-WM6108 | SPI | MM6108 | Common, readily available Pi HAT setup |
 | Silex SX-SDMAH | SDIO | 6108 | |
 | Alfa AHPI6108E | SDIO | 6108 | |
-| Gateworks GW16167 | M.2 E-Key (USB) | MM8108 | m.2 E-Key (USB Signaling) Interface |
+
+### Why Choose MM8108?
+
+The MM8108 increases the maximum PHY rate from 32.5 Mbps to 43.3 Mbps and adds a USB 2.0 host interface. It is also generally 1–3 dB more sensitive than the MM6108 across many channel-width and modulation combinations. Although an MM6108 with OpenMANET's tuned configuration may transmit at slightly higher power than the standard MM8108, the MM8108 can decode weaker signals and retain faster data rates at lower signal levels.
+
+### Reusing a Seeed WM1302 Pi HAT with MM8108
+
+An existing Seeed WM1302 Pi HAT can be reused when upgrading from an MM6108 SPI radio to a Gateworks MM8108 radio. This requires:
+
+- A Gateworks GW16167 or GW16170 radio
+- A mini-PCIe-to-M.2 E-Key adapter that passes USB 2.0, such as the [Gateworks GW16151](https://www.gateworks.com/products/mini-pcie-expansion-cards/gw16151-mini-pcie-to-wifi-e-key-m-2-adapter-card/)
+- A USB-A-to-USB-C **data cable**
+- An appropriate 900 MHz antenna or pigtail for the radio's MMCX connector
+
+Connect the components as follows:
+
+```text
+Raspberry Pi USB-A
+  └── USB-A-to-USB-C data cable
+      └── Seeed WM1302 Pi HAT USB-C
+          └── mini-PCIe-to-M.2 E-Key adapter
+              └── Gateworks GW16167 or GW16170
+```
+
+{: .important }
+The USB cable is required. Connect a USB-A port on the Raspberry Pi to the USB-C port on the WM1302 Pi HAT. The Pi's 40-pin header does not carry the MM8108 radio's USB data connection.
+
+Use the `rpi4-mm8108-usb` OpenMANET firmware image for this configuration. The prebuilt MM8108 USB image currently targets Raspberry Pi 4 and CM4 systems.
 
 ---
 
-## Recommended Parts List
+## MM6108 SPI Parts List
 
 | Item | Optional |
 |------|----------|
@@ -51,20 +83,22 @@ OpenMANET is designed for Raspberry Pi–based devices running OpenWrt, using Wi
 
 ---
 
-## Board Interface Types: SDIO vs SPI
+## Board Interface Types: USB, SDIO, and SPI
 
 HaLow modules connect to the Raspberry Pi through different interfaces depending on the board design:
 
 | Interface | Description | Supported on |
 |------------|-------------|--------------|
+| USB | USB 2.0 host connection used by MM8108 Gateworks radios. | Pi 4 / CM4 with an MM8108 USB image and compatible adapter |
 | SDIO | High-speed 4-bit data bus. Offers better throughput and lower latency. | Image-dependent (common on Pi 4 / Pi 3B / CM4) |
 | SPI | Serial Peripheral Interface used by some HaLow HATs (for example Seeed boards). Easier to wire but typically slower than SDIO. | Image-dependent (Pi 4 / CM4 / Pi 3B / Pi2W supported on current firmware) |
 
 Notes:  
-- Select firmware downloads carefully: the board type, Morse Micro chipset (MM6108 vs MM8108), and interface (SPI vs SDIO) are part of the firmware filename.
+- Select firmware downloads carefully: the board type, Morse Micro chipset (MM6108 vs MM8108), and interface (`usb`, `spi`, or `sdio`) are part of the firmware filename.
+- USB-based MM8108 builds require a complete USB data path between the radio and the Raspberry Pi.
 - On SDIO-based HaLow builds, onboard Wi‑Fi usually cannot be used due to SDIO bus conflicts.
 - On SPI-based HaLow builds, onboard Wi‑Fi can be used for client access (AP mode).
-- In general, `spi` images are for SPI-based Seeed HaLow boards; `sdio` images are for SDIO-based modules (for example Silex or Alfa).
+- In general, `usb` images are for USB-connected MM8108 radios, `spi` images are for SPI-based Seeed HaLow boards, and `sdio` images are for SDIO-based modules (for example Silex or Alfa).
 
 ---
 

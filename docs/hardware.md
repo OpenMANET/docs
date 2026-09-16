@@ -34,8 +34,10 @@ OpenMANET runs on Raspberry Pi–based devices paired with Wi‑Fi HaLow (802.11
 | Seeed WM1302 + Wio-WM6108 | SPI | MM6108 | Common "Seeed board" setup; works on all supported Pi variants |
 | Silex SX-SDMAH | SDIO | MM6108 | |
 | Alfa AHPI6108E | SDIO | MM6108 | |
-| Gateworks GW16167 | M.2 E-Key (USB) | MM8108 | Up to +26dBm Transmit Power |
-| Gateworks GW16170 | M.2 E-Key (USB) | MM8108-M20 | Up to +28.5dBm Transmit Power |
+| [Gateworks GW16167](https://www.gateworks.com/products/wireless-options/gw16167-mm8108-802-11ah-halow-wifi-m2-card/) | M.2 E-Key (USB 2.0) | MM8108 | Recommended for new Pi 4 / CM4 builds; global radio; up to +26 dBm transmit power |
+| [Gateworks GW16170](https://www.gateworks.com/products/wireless-options/gw16170-mm8108-m20-802-11ah-halow-wifi-m2-card/) | M.2 E-Key (USB 2.0) | MM8108-M20 | High-power North America option; up to +28.5 dBm transmit power |
+
+The MM8108 offers higher peak throughput and improved receive sensitivity compared with the MM6108. Raspberry Pi 4 and CM4 users can also reuse a Seeed WM1302 Pi HAT with a USB-capable mini-PCIe-to-M.2 E-Key adapter and a required USB-A-to-USB-C data cable. See [Raspberry Pi Variants](./hardware/raspberry-pi#reusing-a-seeed-wm1302-pi-hat-with-mm8108) for the connection diagram and firmware guidance.
 
 ### Interface Types at a Glance
 
@@ -69,7 +71,7 @@ Camera services start only when `cam -l` detects a compatible sensor. See [Camer
 
 | Page | Description |
 |------|-------------|
-| [Raspberry Pi Variants](./hardware/raspberry-pi) | Detailed parts list, SDIO/SPI reference, CM4 carrier boards, and M.2 Wi‑Fi cards |
+| [Raspberry Pi Variants](./hardware/raspberry-pi) | MM8108 upgrade path, detailed parts list, interface reference, CM4 carrier boards, and M.2 Wi‑Fi cards |
 | [Cameras](./hardware/cameras) | Supported CSI cameras, MediaMTX RTSP streaming, and ATAK Sensor CoT integration |
 | [HaLowLink2](./hardware/halowlink2) | HaLowLink2-specific hardware notes |
 | [Heltec](./hardware/heltec) | Heltec hardware support |
