@@ -32,6 +32,7 @@ OpenMANET is designed for Raspberry Pi–based devices running OpenWrt, using Wi
 | Silex SX-SDMAH | SDIO | 6108 | |
 | Alfa AHPI6108E | SDIO | 6108 | |
 | Gateworks GW16167 | M.2 E-Key (USB) | MM8108 | m.2 E-Key (USB Signaling) Interface |
+
 ---
 
 ## Recommended Parts List
