@@ -44,7 +44,7 @@ The WM1302 Pi HAT is the carrier in both configurations below. The radio card pl
 | Radio path | Radio card | Additional adapter | Pi-to-HAT USB data cable | Firmware |
 |------------|------------|--------------------|--------------------------|----------|
 | Seeed MM6108 SPI | Wio-WM6108 | None | Not used for HaLow data | Matching `mm6108-spi` image |
-| Gateworks MM8108 USB | Choose GW16167 or GW16170 | GW16151 mini-PCIe-to-M.2 E-Key adapter | **Required** | `rpi4-mm8108-usb` |
+| Gateworks MM8108 USB | Choose GW16167 or GW16170 | USB-capable mini-PCIe-to-M.2 E-Key adapter | **Required** | `rpi4-mm8108-usb` |
 
 ### Why Choose MM8108?
 
@@ -55,8 +55,8 @@ The MM8108 increases the maximum PHY rate from 32.5 Mbps to 43.3 Mbps and adds a
 An existing Seeed WM1302 Pi HAT can be reused when upgrading from an MM6108 SPI radio to a Gateworks MM8108 radio. Remove the Wio-WM6108 radio card and replace it with the adapter-and-MM8108 assembly; the two radio cards are alternatives. This requires:
 
 - A Gateworks GW16167 or GW16170 radio
-- A mini-PCIe-to-M.2 E-Key adapter that passes USB 2.0, such as the [Gateworks GW16151](https://www.gateworks.com/products/mini-pcie-expansion-cards/gw16151-mini-pcie-to-wifi-e-key-m-2-adapter-card/)
-- A USB-A-to-USB-C **data cable**
+- A mini-PCIe-to-M.2 E-Key adapter that passes USB 2.0, such as the GLOTRENDS or AliExpress adapter listed below
+- A USB 2.0 **data connection** from a USB-A port on the Pi to the HAT's USB-C port
 - An appropriate 900 MHz antenna or pigtail for the radio's MMCX connector
 
 #### MM8108 USB Shopping List
@@ -66,24 +66,35 @@ This list covers the radio-path-specific parts for a Raspberry Pi 4 or CM4 build
 | Item | Purchase link | Notes |
 |------|---------------|-------|
 | MM8108 radio (choose one) | [GW16167 at DigiKey](https://www.digikey.com/en/products/detail/gateworks-corporation/GW16167/28244003) or [GW16170 at DigiKey](https://www.digikey.com/en/products/detail/gateworks-corporation/GW16170/29719103) | GW16167 is the standard global option; GW16170 is the high-power North America option |
-| M.2 E-Key-to-mini-PCIe adapter | [GW16151 at DigiKey](https://www.digikey.com/en/products/detail/gateworks-corporation/GW16151/21852415) or [GLOTRENDS WA03 at Amazon](https://www.amazon.com/dp/B0B1MDN1HT) | Must pass USB 2.0. The WA03's bundled 2.4/5/6 GHz antennas are not suitable for the 900 MHz MM8108; use the antenna and pigtail listed below. |
+| M.2 E-Key-to-mini-PCIe adapter (choose one) | [GLOTRENDS WA03 at Amazon](https://www.amazon.com/dp/B0B1MDN1HT) or [generic adapter at AliExpress](https://www.aliexpress.com/item/4000521919600.html) | Both options provide the USB path required by the MM8108. The WA03's bundled 2.4/5/6 GHz antennas are not suitable for the 900 MHz MM8108; use the antenna and pigtail listed below. |
 | Seeed WM1302 Pi HAT | [113100022 at DigiKey](https://www.digikey.com/en/products/detail/seeed-technology-co-ltd/113100022/14004100) | Reuse an existing HAT or buy one |
-| USB-A-to-USB-C data cable | [Tensility 10-06139 at DigiKey](https://www.digikey.com/en/products/detail/tensility-international-corp/10-06139/26808303) | USB 2.0 data cable; a charge-only cable will not work |
+| Direct USB-A-to-USB-C cable | [ChenYang 0.2 m flat cable at Amazon](https://www.amazon.com/dp/B096YFM5QB) | This USB 2.0 cable works, but its connector and ribbon are too wide for many compact cases. |
+| Compact USB-C-to-USB-C cable | [xiwai 75 mm angled cable at Amazon](https://www.amazon.com/dp/B0F8HW858S) | This shorter cable should fit most cases. Because both ends are USB-C, it also requires a USB-A-male-to-USB-C-female data adapter at the Raspberry Pi. |
 | 900 MHz antenna | [Pulse W1063 at DigiKey](https://www.digikey.com/en/products/detail/pulse-electronics/W1063/1634416) | Gateworks lists the W1063 family for 902–928 MHz use |
 | MMCX-to-RP-SMA pigtail | [Samtec RF174-01SR1-03RP1-0305 at DigiKey](https://www.digikey.com/en/products/detail/samtec-inc/RF174-01SR1-03RP1-0305/17278929) | Connects the Gateworks radio's MMCX port to the W1063 antenna |
 
-Connect the components as follows:
+Connect the components using either USB cable path:
 
 ```text
+Direct cable:
 Raspberry Pi USB-A
-  └── USB-A-to-USB-C data cable
+  └── ChenYang USB-A-to-USB-C data cable
       └── Seeed WM1302 Pi HAT USB-C
-          └── mini-PCIe-to-M.2 E-Key adapter
-              └── Gateworks GW16167 or GW16170
+
+Compact cable:
+Raspberry Pi USB-A
+  └── USB-A-male-to-USB-C-female data adapter
+      └── xiwai USB-C-to-USB-C data cable
+          └── Seeed WM1302 Pi HAT USB-C
+
+Inside the HAT:
+Seeed WM1302 Pi HAT
+  └── mini-PCIe-to-M.2 E-Key adapter
+      └── Gateworks GW16167 or GW16170
 ```
 
 {: .important }
-The USB cable is required. Connect a USB-A port on the Raspberry Pi to the USB-C port on the WM1302 Pi HAT. The Pi's 40-pin header does not carry the MM8108 radio's USB data connection.
+The USB data connection is required. Connect a USB-A port on the Raspberry Pi to the USB-C port on the WM1302 Pi HAT. If using the xiwai USB-C-to-USB-C cable, insert a USB-A-male-to-USB-C-female **data adapter** at the Pi. The Pi's 40-pin header does not carry the MM8108 radio's USB data connection.
 
 Use the `rpi4-mm8108-usb` OpenMANET firmware image for this configuration. The prebuilt MM8108 USB image currently targets Raspberry Pi 4 and CM4 systems.
 
