@@ -20,14 +20,17 @@ OpenMANET firmware filenames include the information you need to select the corr
 
 - SBC/target (example: `rpi4`, `rpi3`)
 - Morse Micro chipset family (example: `mm6108`, `mm8108`)
-- HaLow interface (example: `spi`, `sdio`)
+- HaLow interface (example: `spi`, `sdio`, `usb`)
 
 > **Important:** Select your firmware downloads carefully. If you are using a Seeed Studio HaLow board, you typically want an image with `spi` in the name.
 
-### HaLow Interface Guidance (SPI vs SDIO)
+### HaLow Interface Guidance (SPI, SDIO, and USB)
 
 - `spi` images are intended for SPI-based HaLow HATs (most commonly the Seeed WM1302 + Wio-WM6108 setups).
 - `sdio` images are intended for SDIO-based HaLow modules (for example Silex or Alfa SDIO boards).
+- `usb` images are intended for USB-connected MM8108 radios, including the Gateworks GW16167 and GW16170. For a Raspberry Pi 4 or CM4, select the `rpi4-mm8108-usb` image.
+
+When reusing a Seeed WM1302 Pi HAT with a USB-connected MM8108 radio, connect a USB-A port on the Raspberry Pi to the USB-C port on the HAT with a data cable. The 40-pin header alone does not provide the radio's USB data connection. See [Raspberry Pi Variants](./hardware/raspberry-pi#reusing-a-seeed-wm1302-pi-hat-with-mm8108) for the complete adapter chain.
 
 > Note: SDIO images can work across different SDIO boards, but the board configuration file (BCF) must match your specific radio/module. The default BCF is tuned for an Alfa board; for other SDIO boards you will need to obtain the correct BCF from the manufacturer and apply it.
 
