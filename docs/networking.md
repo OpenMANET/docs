@@ -74,6 +74,19 @@ Note: `nslookup` typically will not resolve mDNS names.
 
 ---
 
+## Android: Using OpenMANET and LTE at the Same Time
+
+Standard, non-tactical Android phones normally use a single default network. When a phone is connected locally to OpenMANET over Wi-Fi or Ethernet while LTE/5G remains enabled, Android does not provide a normal user-facing way to add the route needed to use both connections at once. It may keep LTE as the default and send OpenMANET-bound unicast traffic to the wrong interface, or make the local connection the default and interrupt access to the internet.
+
+This is a common question for ATAK users who want to receive multicast situational-awareness traffic from OpenMANET while maintaining a connection to a TAK server that is reachable over LTE. Samsung Tactical Edition devices include simultaneous MANET and LTE routing features, but standard Android devices generally do not.
+
+[MeshRoute](https://github.com/RyanR3/MeshRoute) is a third-party Android utility intended to address this limitation when the OpenMANET connection uses USB-C Ethernet. It creates a split-tunnel VPN that claims only the local mesh subnet and forwards that traffic over Ethernet, while other traffic continues to use the phone's normal LTE/5G or internet connection. MeshRoute deliberately leaves multicast outside its tunnel, allowing interface-aware applications such as ATAK to continue handling OpenMANET multicast traffic directly on the local interface.
+
+{: .important }
+MeshRoute has not been tested or validated by the OpenMANET developers. Review the project's documentation, requirements, and releases before using it in an operational environment.
+
+---
+
 ## BATMAN-V Adds the MANET Brain
 
 **True MANET routing.** BATMAN-V monitors link quality per hop, redistributes neighbors, and reroutes automatically as nodes move. Your clients keep a flat IP experience while the mesh dynamically rebuilds paths.
